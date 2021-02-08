@@ -1,6 +1,6 @@
 // Screen
-const double widthScreen = 375;
-const double heightScreen = 812;
+const double widthScreen = 360;
+const double heightScreen = 780;
 
 // API
 const String apiUrl = 'https://';

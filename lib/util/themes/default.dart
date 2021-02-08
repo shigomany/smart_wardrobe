@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:smartwardrobe/util/custom_colors.dart';
 
 ThemeData defaultTheme(BuildContext context) => ThemeData(
       // fontFamily: 'Rubik',
       accentColor: Colors.white,
+      inputDecorationTheme: const InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 0.5),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.blue, width: 0.5),
+          ),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(8)))),
       // outlinedButtonTheme: OutlinedButtonThemeData(
       //   style: OutlinedButton.styleFrom(
       //       backgroundColor: CustomColors.main, elevation: 0),
@@ -23,7 +33,7 @@ ThemeData defaultTheme(BuildContext context) => ThemeData(
       //       style: BorderStyle.solid,
       //     ),
       //     borderRadius: BorderRadius.all(
-      //       Radius.circular(12),
+      //       Radius.circular(8),
       //     ),
       //     gapPadding: 0,
       //   ),

@@ -7,6 +7,9 @@ import 'package:smartwardrobe/internal/dependecies/main_module.dart';
 import 'package:smartwardrobe/internal/di/global.dart';
 import 'package:smartwardrobe/internal/di/init.dart';
 import 'package:smartwardrobe/presentation/home.dart';
+import 'package:smartwardrobe/presentation/login/login.dart';
+import 'package:smartwardrobe/presentation/register/register.dart';
+import 'package:smartwardrobe/presentation/main/main.dart';
 import 'package:smartwardrobe/util/constants.dart';
 import 'package:smartwardrobe/util/themes/default.dart';
 
@@ -36,6 +39,9 @@ class Application extends StatelessWidget {
             initialRoute: HomeScreen.routeName,
             routes: {
               HomeScreen.routeName: (_) => const HomeScreen(),
+              LoginScreen.routeName: (_) => const LoginScreen(),
+              RegisterScreen.routeName: (_) => RegisterScreen(),
+              MainScreen.routeName: (_) => const MainScreen(),
             }),
       ),
     );
