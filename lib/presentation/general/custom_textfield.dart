@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.always,
           labelText: labelText,
           contentPadding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w)),
     );

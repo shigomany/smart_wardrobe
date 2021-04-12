@@ -24,26 +24,33 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.0
-  flutter_bloc: ^6.1.0
-  bloc: ^6.1.0
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^7.0.0
+  bloc: ^7.0.0
   get_it: ^5.0.3 # DI
-  dio: ^3.0.10 # HTTP Client
+  dio: ^4.0.0 # HTTP Client
   flutter_screenutil: ^4.0.2+1
   equatable: ^1.2.5 # AKA equals and hashcode
-  form_field_validator: ^1.0.1
+  form_field_validator: ^1.1.0
   union: ^0.0.3+1
   tuple: ^1.0.3
-  image_picker: ^0.6.7+21
-  loading_gifs: ^0.2.3
-  shared_preferences: ^0.5.12+4
+  image_picker: ^0.7.4
+  loading_gifs: ^0.3.0
+  shared_preferences: ^2.0.5
   auto_size_text: ^2.1.0
   vnum: ^1.2.6 # Typed enums
-  json_annotation: ^3.1.1
-  flutter_svg: ^0.18.0
+  json_annotation: ^3.1.0
+  flutter_svg: ^0.21.0
   list_ext: ^0.2.0 # Extending list methods
   quiver: ^2.1.5 # Extending list methods
   flutter_icons: ^1.1.0
+  flutter_custom_dialog: ^1.0.20
+  http: ^0.13.1
+  intl: ^0.17.0
+
+
+
+  
 
 dev_dependencies:
   flutter_test:

@@ -6,7 +6,7 @@ class ApiUser extends Equatable {
   final String username;
   final String password;
   final String email;
-  
+
   ApiUser({
     this.id,
     this.name,
@@ -28,6 +28,14 @@ class ApiUser extends Equatable {
       email: map['email'] as String,
     );
   }
+
+  User toEntity() => User(
+        id: id,
+        username: username,
+        email: email,
+        password: password,
+        name: name,
+      );
 
   @override
   bool get stringify => true;

@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:smartwardrobe/presentation/item/item.dart';
+import 'package:smartwardrobe/presentation/kits/kits.dart';
 import 'package:smartwardrobe/presentation/login/login.dart';
 import 'package:smartwardrobe/presentation/register/register.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';

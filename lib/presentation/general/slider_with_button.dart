@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartwardrobe/presentation/kits/kits.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartwardrobe/presentation/general/image_slider.dart';
 
@@ -18,6 +19,11 @@ class SliderWithButton extends StatelessWidget {
       this.titleColor,
       this.buttonTextColor})
       : super(key: key);
+
+  Future navigateToKitsPage(context) async {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => KitsScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +61,7 @@ class SliderWithButton extends StatelessWidget {
                                 BorderSide(width: 1, color: Color(0xFFf2f2f2)),
                             borderRadius: BorderRadius.circular(5.w))),
                     onPressed: () {
-                      print(buttonLink);
+                      navigateToKitsPage(context);
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.w),
