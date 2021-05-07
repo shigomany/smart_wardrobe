@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:smartwardrobe/presentation/kits/kits.dart';
+import 'package:smartwardrobe/presentation/items/items.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smartwardrobe/resources/resources.dart';
@@ -31,7 +31,7 @@ class BottomBar extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              navigateToScreen(context, KitsScreen());
+              navigateToScreen(context, ItemsScreen());
             },
             child: Padding(
               padding: EdgeInsets.only(

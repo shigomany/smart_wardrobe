@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:smartwardrobe/presentation/general/editable_expansion_tile.dart';
+import 'package:smartwardrobe/presentation/item_from_camera/item_from_camera.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class ListMenuSlider extends StatefulWidget {
@@ -12,6 +13,10 @@ class ListMenuSlider extends StatefulWidget {
 
   @override
   _ListMenuSliderState createState() => _ListMenuSliderState();
+}
+
+Future navigateToScreen(context, routeLink) async {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => routeLink));
 }
 
 class _ListMenuSliderState extends State<ListMenuSlider>
@@ -83,22 +88,28 @@ class _ListMenuSliderState extends State<ListMenuSlider>
         ),
       ),
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Divider(
-              color: Color(0xFFEDEDED),
-              height: 1,
-              thickness: 1,
-            ),
-            Padding(
-              padding: EdgeInsets.all(16.w),
-              child: Text(
-                "По фотографии",
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300),
+        InkWell(
+          onTap: () {
+            navigateToScreen(context, ItemFromCamera());
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Divider(
+                color: Color(0xFFEDEDED),
+                height: 1,
+                thickness: 1,
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.all(16.w),
+                child: Text(
+                  "По фотографии",
+                  style:
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300),
+                ),
+              ),
+            ],
+          ),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

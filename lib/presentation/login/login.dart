@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smartwardrobe/presentation/main/main.dart';
+import 'package:smartwardrobe/presentation/register/register.dart';
+import 'package:smartwardrobe/resources/resources.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -16,6 +19,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _textEmailController = TextEditingController();
   final _textPasswordController = TextEditingController();
 
+  Future navigateToScreen(context, routeLink) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => routeLink));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,19 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.fromLTRB(16.w, 24.w, 16.w, 64.w),
+              padding: EdgeInsets.fromLTRB(0.w, 24.w, 0.w, 64.w),
               child: SizedBox(
                 width: double.infinity,
                 child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Text(
-                    'L O G O',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        backgroundColor: CustomColors.lightGrey),
-                  ),
-                ),
+                    fit: BoxFit.contain,
+                    child: Image.asset(ImagesPaths.bigLogo)),
               ),
             ),
             Padding(
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: ElevatedButton.styleFrom(
                         primary: CustomColors.textPrimary),
                     onPressed: () {
-                      print('Pressed');
+                      navigateToScreen(context, MainScreen());
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.w),
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   TextButton(
                     onPressed: () {
-                      print('Pressed');
+                      navigateToScreen(context, RegisterScreen());
                     },
                     child: Column(
                       children: [

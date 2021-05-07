@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';
+import 'package:smartwardrobe/resources/resources.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class LogoBar extends StatelessWidget {
@@ -45,17 +46,18 @@ class LogoBar extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 8.w),
-              child: Icon(FontAwesome.sun_o, color: CustomColors.lightGrey),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 4.w,
+                ),
+                child: Image.asset(
+                  ImagesPaths.smallLogoText,
+                  scale: 1.1,
+                ),
+              ),
             ),
-            Text(
-              'L O G O N A M E',
-              style: TextStyle(
-                  color: CustomColors.lightGrey,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.sp),
-            )
           ],
         ),
       ),

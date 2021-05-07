@@ -1,7 +1,4 @@
-//part of 'models.dart'
-
-import 'package:equatable/equatable.dart';
-import 'package:smartwardrobe/domain/model/models.dart';
+part of 'models.dart';
 
 class ApiWeather extends Equatable {
   final double feelsTemp;
@@ -17,9 +14,7 @@ class ApiWeather extends Equatable {
   });
 
   factory ApiWeather.fromApi(Map<String, dynamic> map) {
-    if (map == null) {
-      return null;
-    }
+    if (map == null) return null;
 
     return ApiWeather(
       feelsTemp: double.tryParse(map["main"]["feels_like"].toString()),

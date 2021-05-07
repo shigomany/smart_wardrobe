@@ -1,14 +1,4 @@
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:smartwardrobe/domain/model/models.dart';
-
-import 'package:smartwardrobe/domain/usecase/get_weather.dart';
-
-part 'weather_event.dart';
-part 'weather_state.dart';
+part of 'weather.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final GetWeather getWeatherCase;
@@ -25,6 +15,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     WeatherEvent event,
   ) async* {
     if (event is GetWeatherInfo) {
+      yield WeatherLodaing();
+
       final result = await getWeatherCase(event.city);
 
       yield (WeatherLoaded(weather: result));

@@ -1,4 +1,4 @@
-part of 'weather_bloc.dart';
+part of 'weather.dart';
 
 abstract class WeatherState extends Equatable {
   const WeatherState();
@@ -8,6 +8,8 @@ abstract class WeatherState extends Equatable {
 }
 
 class WeatherInitial extends WeatherState {}
+
+class WeatherLodaing extends WeatherState {}
 
 class WeatherLoaded extends WeatherState {
   final Weather weather;

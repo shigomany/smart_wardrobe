@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smartwardrobe/presentation/login/login.dart';
+import 'package:smartwardrobe/presentation/main/main.dart';
+import 'package:smartwardrobe/resources/resources.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -18,6 +21,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _textEmailController = TextEditingController();
   final _textPasswordController = TextEditingController();
 
+  Future navigateToScreen(context, routeLink) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => routeLink));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,19 +34,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.fromLTRB(16.w, 24.w, 16.w, 36.w),
+              padding: EdgeInsets.only(top: 8.w, bottom: 16.w),
               child: SizedBox(
                 width: double.infinity,
                 child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Text(
-                    'L O G O',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        backgroundColor: CustomColors.lightGrey),
-                  ),
-                ),
+                    fit: BoxFit.contain,
+                    child: Image.asset(ImagesPaths.bigLogo)),
               ),
             ),
             Padding(
@@ -69,38 +69,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _textPasswordController,
                 )),
             Padding(
-              padding: EdgeInsets.all(8.w),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  child: Text('Забыли пароль?',
-                      style: TextStyle(
-                          color: CustomColors.textPrimary,
-                          fontWeight: FontWeight.w300,
-                          fontSize: 16.sp)),
-                  onPressed: () {
-                    print('Pressed');
-                  },
-                ),
-              ),
-            ),
-            Padding(
               padding: EdgeInsets.all(16.w),
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: CustomColors.textPrimary),
-                    onPressed: () {
-                      print('Pressed');
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.w),
-                      child: Text(
-                        'Войти',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )),
+                  style: ElevatedButton.styleFrom(
+                      primary: CustomColors.textPrimary),
+                  onPressed: () {
+                    navigateToScreen(context, MainScreen());
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.w),
+                    child: Text(
+                      'Войти',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
             ),
             Center(
@@ -152,7 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: <Widget>[
                   TextButton(
                     onPressed: () {
-                      print('Pressed');
+                      navigateToScreen(context, LoginScreen());
                     },
                     child: Column(
                       children: [

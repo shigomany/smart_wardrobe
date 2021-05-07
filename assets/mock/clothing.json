@@ -1,0 +1,110 @@
+[
+    {
+        "id": 1,
+        "category": "Верхняя одежда",
+        "subCategory": "Куртка джинсовая",
+        "brand": "Produkt",
+        "size": "L",
+        "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+        "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+        "price": 3950,
+        "seasons": []
+    },
+    {
+        "id": 2,
+        "category": "Верхняя одежда",
+        "subCategory": "Куртка джинсовая",
+        "brand": "Tommy Jeans",
+        "size": "M",
+        "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAE074501_13904890_1_v1_2x.jpg",
+        "url": "https://www.lamoda.ru/p/rtlaae074501/clothes-tommyjeans-kurtka-dzhinsovaya/",
+        "price": 13599,
+        "seasons": [
+            "зима",
+            "весна"
+        ]
+    },
+    {
+        "id": 3,
+        "category": "Верхняя одежда",
+        "subCategory": "Пальто",
+        "brand": "Caravan",
+        "size": "55",
+        "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM0S89N_13185768_1_v1_2x.jpg",
+        "url": "https://www.lamoda.ru/p/mp002xm0s89n/clothes-caravan-polupalto/",
+        "price": 8900,
+        "seasons": []
+    },
+    {
+        "id": 4,
+        "category": "Туфли",
+        "subCategory": "Лоферы",
+        "brand": "Ralf Ringer",
+        "size": "44",
+        "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+        "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+        "price": 6200,
+        "seasons": [
+            "зима"
+        ]
+    },
+    {
+        "id": 5,
+        "category": "Рубашки",
+        "subCategory": "Рубашки с длинным рукавом",
+        "brand": "Henderson",
+        "size": "L",
+        "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+        "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+        "price": 5,
+        "seasons": [
+            "зима",
+            "весна"
+        ]
+    },
+    {
+        "id": 6,
+        "category": "Ботинки",
+        "subCategory": "Высокие ботинки",
+        "brand": "Tommy Hilfiger",
+        "size": "44",
+        "image_url": "https://a.lmcdn.ru/img600x866/T/O/TO263AMKPKR4_12251045_1_v1.jpg",
+        "url": "https://www.lamoda.ru/p/to263amkpkr4/shoes-tommyhilfiger-botinki/",
+        "price": 9740,
+        "seasons": [
+            "зима"
+        ]
+    },
+    {
+        "id": 7,
+        "category": "Туфли",
+        "subCategory": "Дерби",
+        "brand": "Ecco",
+        "size": "44",
+        "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1HF2X_13875771_1_v1.jpg",
+        "url": "https://www.lamoda.ru/p/mp002xm1hf2x/shoes-ecco-tufli/",
+        "price": 13990,
+        "seasons": [
+            "зима",
+            "весна",
+            "лето",
+            "осень"
+        ]
+    },
+    {
+        "id": 8,
+        "category": "Брюки",
+        "subCategory": "Повседневные брюки",
+        "brand": "Finn Flare",
+        "size": "8",
+        "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+        "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+        "price": 2744,
+        "seasons": [
+            "зима",
+            "весна",
+            "лето",
+            "осень"
+        ]
+    }
+]

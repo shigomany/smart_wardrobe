@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartwardrobe/presentation/kits/kits.dart';
+import 'package:smartwardrobe/presentation/items/items.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartwardrobe/presentation/general/image_slider.dart';
 
@@ -22,7 +22,7 @@ class SliderWithButton extends StatelessWidget {
 
   Future navigateToKitsPage(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => KitsScreen()));
+        context, MaterialPageRoute(builder: (context) => ItemsScreen()));
   }
 
   @override

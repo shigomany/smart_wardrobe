@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smartwardrobe/domain/model/models.dart';
+import 'package:smartwardrobe/presentation/bloc/set.dart';
 import 'package:smartwardrobe/presentation/edit_item/edit_item.dart';
 import 'package:smartwardrobe/presentation/general/bottom_bar.dart';
+import 'package:smartwardrobe/presentation/general/bottom_dialog.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/item_card.dart';
-import 'package:smartwardrobe/presentation/general/logo_bar.dart';
-import 'package:smartwardrobe/presentation/general/multi_select_chip.dart';
-import 'package:smartwardrobe/presentation/main/main.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class ItemScreen extends StatefulWidget {
   static String routeName = '/item';
-  const ItemScreen({Key key}) : super(key: key);
+  final Clothing item;
+  const ItemScreen({Key key, @required this.item}) : super(key: key);
 
   @override
   _ItemScreenState createState() => _ItemScreenState();
 }
 
 class _ItemScreenState extends State<ItemScreen> {
+  List<Set> sets;
+
   Future navigateBack(context) async {
     Navigator.of(context).pop();
+    dispose();
   }
 
   Future navigateToEditScreen(context) async {
@@ -29,9 +35,22 @@ class _ItemScreenState extends State<ItemScreen> {
   }
 
   @override
+  void initState() {
+    BlocProvider.of<SetBloc>(context)..add(FetchRelatedSets(1));
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    sets = [];
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var mediaQueryData = MediaQuery.of(context);
     final double widthScreen = mediaQueryData.size.width;
+    YYDialog.init(context);
 
     return SafeArea(
       child: Scaffold(
@@ -110,10 +129,11 @@ class _ItemScreenState extends State<ItemScreen> {
                           width: 328.w,
                           height: 328.w,
                           decoration: BoxDecoration(
-                            color: Colors.amber,
                             border: Border.all(
                                 color: Color(0xFFF2F2F2), width: 4.w),
                           ),
+                          child: Image.network(widget.item.imageUrl,
+                              fit: BoxFit.scaleDown),
                         ),
                         Padding(
                           padding: EdgeInsets.all(16.w),
@@ -121,13 +141,13 @@ class _ItemScreenState extends State<ItemScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Nike",
+                                widget.item.brand,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w300,
                                   fontSize: 16.sp,
                                 ),
                               ),
-                              Text("Кроссовки AIR MONARCH IV",
+                              Text(widget.item.subCategory,
                                   style: TextStyle(
                                       fontWeight: FontWeight.normal,
                                       fontSize: 16.sp,
@@ -168,7 +188,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                         fontWeight: FontWeight.w300,
                                         color: Color(0xFF696767)),
                                   ),
-                                  Text('44',
+                                  Text(widget.item.size,
                                       style: TextStyle(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.w300,
@@ -201,9 +221,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                       fontWeight: FontWeight.w300,
                                       color: Color(0xFF696767)),
                                 ),
-                                Text(
-                                    'www.lamoda.ru/p/ni4ad14fg564q...'
-                                        .replaceAll("", "\u{200B}"),
+                                Text(widget.item.url.replaceAll("", "\u{200B}"),
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
@@ -254,12 +272,31 @@ class _ItemScreenState extends State<ItemScreen> {
                     )),
                 Padding(
                   padding: EdgeInsets.only(top: 8.w, bottom: 16.w),
-                  child: Wrap(
-                    children: [
-                      ItemCard(widthScreen: widthScreen),
-                      ItemCard(widthScreen: widthScreen),
-                      ItemCard(widthScreen: widthScreen)
-                    ],
+                  child: BlocBuilder<SetBloc, SetState>(
+                    builder: (context, state) {
+                      if (state is SetInitial) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.blue,
+                          ),
+                        );
+                      } else if (state is SetLoading) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.blue,
+                          ),
+                        );
+                      } else if (state is SetsListLoaded) {
+                        print(state.sets);
+                        return Wrap(
+                          children: [
+                            ItemCard(widthScreen: widthScreen),
+                            ItemCard(widthScreen: widthScreen),
+                            ItemCard(widthScreen: widthScreen)
+                          ],
+                        );
+                      }
+                    },
                   ),
                 )
               ],
@@ -267,7 +304,7 @@ class _ItemScreenState extends State<ItemScreen> {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              print('pressed');
+              YYBottomSheetDialog(context);
             },
             child: Icon(Icons.add,
                 color: Color.fromRGBO(253, 253, 253, 1), size: 36.sp),

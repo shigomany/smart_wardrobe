@@ -1,0 +1,644 @@
+[
+    {
+        "id": 1,
+        "name": "first",
+        "description": "first set",
+        "imgUrl": "https://www.be-in.ru/media/beingallery/gallery/userdata/user_12133/img23282.jpg",
+        "minTemp": "-10",
+        "maxTemp": "10",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "second",
+        "description": "second set",
+        "imgUrl": "https://www.passion.ru/imgs/2017/05/23/07/1203498/d1b65cf9e7f25a3e5b0b7c51554876045dde0028.jpg",
+        "minTemp": "-5",
+        "maxTemp": "5",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна",
+                    "лето",
+                    "осень"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "third",
+        "description": "third set",
+        "imgUrl": "https://www.passion.ru/imgs/2017/05/23/07/1203528/eaf51b5c88c2a28a842c01103eab20ab588c1747.jpg",
+        "minTemp": "-3",
+        "maxTemp": "3",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна",
+                    "лето",
+                    "осень"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "fourth",
+        "description": "fourth set",
+        "imgUrl": "https://newsomsk.ru/images/uploading/8300a6850fdb35e3d3ce736d68ee2ae0.png",
+        "minTemp": "-4",
+        "maxTemp": "4",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна",
+                    "лето",
+                    "осень"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "fifth",
+        "description": "fifth set",
+        "imgUrl": "https://www.passion.ru/thumb/460x0/filters:quality(75)/imgs/2017/05/23/07/1203498/d1b65cf9e7f25a3e5b0b7c51554876045dde0028.jpg",
+        "minTemp": "-5",
+        "maxTemp": "5",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна",
+                    "лето",
+                    "осень"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "sixth",
+        "description": "sixth set",
+        "imgUrl": "https://www.be-in.ru/media/beingallery/gallery/userdata/user_12133/img23278.jpg",
+        "minTemp": "-6",
+        "maxTemp": "6",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна",
+                    "лето",
+                    "осень"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "seventh",
+        "description": "seveth set",
+        "imgUrl": "https://3tvrfg2u7y5u3ab4txgx3835-wpengine.netdna-ssl.com/wp-content/uploads/2020/02/StyleScenario_SmartCasualInterview_small.jpg",
+        "minTemp": "-10",
+        "maxTemp": "10",
+        "clothes": [
+            {
+                "id": 1,
+                "category": "Верхняя одежда",
+                "subCategory": "Куртка джинсовая",
+                "brand": "Produkt",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+                "price": 3950,
+                "seasons": []
+            },
+            {
+                "id": 4,
+                "category": "Туфли",
+                "subCategory": "Лоферы",
+                "brand": "Ralf Ringer",
+                "size": "44",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
+                "price": 6200,
+                "seasons": [
+                    "зима"
+                ]
+            },
+            {
+                "id": 5,
+                "category": "Рубашки",
+                "subCategory": "Рубашки с длинным рукавом",
+                "brand": "Henderson",
+                "size": "L",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
+                "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
+                "price": 5,
+                "seasons": [
+                    "зима",
+                    "весна"
+                ]
+            },
+            {
+                "id": 8,
+                "category": "Брюки",
+                "subCategory": "Повседневные брюки",
+                "brand": "Finn Flare",
+                "size": "8",
+                "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
+                "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",
+                "price": 2744,
+                "seasons": [
+                    "зима",
+                    "весна",
+                    "лето",
+                    "осень"
+                ]
+            }
+        ],
+        "cases": [
+            {
+                "id": 1,
+                "name": "Прогулка"
+            },
+            {
+                "id": 2,
+                "name": "Офис"
+            },
+            {
+                "id": 3,
+                "name": "Ресторан"
+            }
+        ],
+        "seasons": [
+            {
+                "id": 1,
+                "name": "Зима"
+            },
+            {
+                "id": 2,
+                "name": "Весна"
+            },
+            {
+                "id": 3,
+                "name": "Лето"
+            }
+        ]
+    }
+]

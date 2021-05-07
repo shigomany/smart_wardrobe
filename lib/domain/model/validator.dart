@@ -1,4 +1,8 @@
-part of 'models.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
+import 'package:smartwardrobe/presentation/view_models/clothing.dart';
 
 class Validator extends Equatable {
   final String field;
@@ -10,7 +14,7 @@ class Validator extends Equatable {
     @required this.message,
     @required this.description,
   });
-  
+
   @override
   List<Object> get props => [field, message, description];
 

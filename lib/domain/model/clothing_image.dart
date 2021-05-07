@@ -4,12 +4,16 @@ class ClothingImage extends Equatable {
   final int id;
   final String brandName;
   final String itemName;
+  final String size;
+  final String url;
   bool isSelected;
 
   ClothingImage({
     this.id,
     this.brandName,
     this.itemName,
+    this.size,
+    this.url,
     this.isSelected = false,
   });
 
@@ -17,6 +21,8 @@ class ClothingImage extends Equatable {
     int id,
     String brandName,
     String itemName,
+    String size,
+    String url,
     bool isSelected,
   }) {
     return ClothingImage(

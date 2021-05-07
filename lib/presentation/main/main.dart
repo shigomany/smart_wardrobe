@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/date_symbol_data_file.dart';
-import 'package:intl/intl.dart';
-import 'package:quiver/iterables.dart';
+import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiver/iterables.dart';
 import 'package:smartwardrobe/domain/model/clothing_image.dart';
-import 'package:smartwardrobe/internal/di/init.dart';
-import 'package:smartwardrobe/presentation/bloc/weather_bloc.dart';
+import 'package:smartwardrobe/presentation/bloc/weather.dart';
+import 'package:smartwardrobe/presentation/general/bottom_bar.dart';
+import 'package:smartwardrobe/presentation/general/bottom_dialog.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
-import 'package:smartwardrobe/presentation/general/list_menu_slider.dart';
+
 import 'package:smartwardrobe/presentation/general/slider_with_button.dart';
 import 'package:smartwardrobe/presentation/main/weather_widget.dart';
+import 'package:smartwardrobe/resources/resources.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
-import 'package:intl/date_symbol_data_local.dart' as localeFile;
 
 class MainScreen extends StatefulWidget {
   static String routeName = '/main';
@@ -26,10 +25,6 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  DateFormat dayOfWeek;
-  DateFormat month;
-  DateFormat day;
-
   final List<ClothingImage> items = [
     ClothingImage(id: 98, brandName: 'Columbia', itemName: 'Куртка'),
     ClothingImage(id: 89, brandName: 'Nike', itemName: 'Air Monarch IV'),
@@ -42,18 +37,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    localeFile.initializeDateFormatting('ru');
-    dayOfWeek = DateFormat.EEEE('ru');
-    month = DateFormat.MMMM('ru');
-    day = DateFormat.d('ru');
-
-    final bloc = sl<WeatherBloc>();
-    bloc.add(GetWeatherInfo('tyumen'));
+    YYDialog.init(context);
+    BlocProvider.of<WeatherBloc>(context).add(GetWeatherInfo('tyumen'));
   }
 
   @override
   Widget build(BuildContext context) {
-    var dateTime = new DateTime.now();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -65,23 +54,14 @@ class _MainScreenState extends State<MainScreen> {
                 blurRadius: 7,
                 offset: Offset(0, 3))
           ]),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.w, horizontal: 16.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(right: 8.w),
-                  child: Icon(FontAwesome.sun_o, color: CustomColors.lightGrey),
-                ),
-                Text(
-                  'L O G O N A M E',
-                  style: TextStyle(
-                      color: CustomColors.lightGrey,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.sp),
-                )
-              ],
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 12.w, horizontal: 8.w),
+              child: Image.asset(
+                ImagesPaths.smallLogoText,
+                scale: 1.1,
+              ),
             ),
           ),
         )),
@@ -89,51 +69,17 @@ class _MainScreenState extends State<MainScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            day.format(dateTime),
-                            style: TextStyle(
-                                fontSize: 48.sp,
-                                fontWeight: FontWeight.w300,
-                                color: CustomColors.darkGrey),
-                          ),
-                          Text(
-                            month.format(dateTime) +
-                                ', ' +
-                                dayOfWeek.format(dateTime),
-                            style: TextStyle(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w300,
-                                color: CustomColors.darkGrey),
-                          )
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: WeatherWidget(),
-                    )
-                  ],
-                ),
-              ),
+              WeatherWidget(),
               SliderWithButton(
-                title: 'Комплекты на сегодня',
-                titleColor: Color(0xFFFFFFFF),
+                title: 'Костюм на сегодня',
                 buttonText: 'Перейти к комплектам',
                 buttonLink: 'Перейти к комплектам',
+                titleColor: Color(0xFFFFFFFF),
                 buttonTextColor: Color(0xFF84B3ED),
                 backgroundColor: Color(0xFF84B3ED),
               ),
-              ListMenuSlider(title: 'Добавить новую вещь'),
-              ListMenuSlider(title: 'Добавить новый образ'),
+              // ListMenuSlider(title: 'Добавить новую вещь'),
+              // ListMenuSlider(title: 'Добавить новый образ'),
               Container(
                 child: Padding(
                   padding: EdgeInsets.only(top: 16.w, bottom: 16.w),
@@ -198,6 +144,17 @@ class _MainScreenState extends State<MainScreen> {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+          elevation: 2,
+          onPressed: () {
+            YYBottomSheetDialog(context);
+          },
+          child: Icon(Icons.add,
+              color: Color.fromRGBO(253, 253, 253, 1), size: 36.sp),
+          backgroundColor: CustomColors.textPrimaryLight,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomBar(),
       ),
     );
   }

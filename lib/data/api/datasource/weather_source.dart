@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:smartwardrobe/data/api/model/api_weather.dart';
+import 'package:smartwardrobe/data/api/model/models.dart';
 import 'package:smartwardrobe/util/constants.dart';
 
 class WeatherSource {

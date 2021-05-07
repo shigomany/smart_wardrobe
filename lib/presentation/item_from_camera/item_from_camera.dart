@@ -1,11 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:smartwardrobe/domain/model/models.dart';
+import 'package:smartwardrobe/presentation/bloc/clothing.dart';
 import 'dart:async';
 import 'dart:io';
 
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
+import 'package:smartwardrobe/presentation/general/custom_textfield.dart';
 import 'package:smartwardrobe/presentation/general/logo_bar.dart';
+import 'package:smartwardrobe/presentation/general/multi_select_chip.dart';
+import 'package:smartwardrobe/util/custom_colors.dart';
 
 class ItemFromCamera extends StatefulWidget {
   static String routeName = '/item_from_camera';
@@ -19,12 +26,28 @@ class _ItemFromCameraState extends State<ItemFromCamera> {
   PickedFile _image;
   File _imageFile;
   ImageProvider _provider;
+  bool formFlag = false;
+  Widget clothingForm;
+  List<String> selectedReportList = [];
+  final List<String> reportList = [
+    "лето",
+    "осень",
+    "зима",
+    "весна",
+  ];
+
+  final _categoryController = TextEditingController();
+  final _brandController = TextEditingController();
+  final _sizeController = TextEditingController();
+  final _urlController = TextEditingController();
+  final _priceController = TextEditingController();
 
   Future navigateBack(context) async {
     Navigator.of(context).pop();
   }
 
   _imgFromCamera() async {
+    formFlag = false;
     PickedFile image = await ImagePicker.platform.pickImage(
         source: ImageSource.camera,
         maxHeight: 1200,
@@ -32,10 +55,22 @@ class _ItemFromCameraState extends State<ItemFromCamera> {
         imageQuality: 100);
 
     setState(() {
-      _image = image;
+      if (image == null) {
+        _image = null;
+        _imageFile = null;
+        clothingForm = _buildButton(image: null);
+      } else {
+        _image = image;
+        _imageFile = File(_image.path);
+        clothingForm = _buildButton(image: _image);
+      }
     });
-    print(_image);
-    _imageFile = File(_image.path);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    clothingForm = _buildButton(image: _image);
   }
 
   @override
@@ -70,19 +105,40 @@ class _ItemFromCameraState extends State<ItemFromCamera> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _image != null
-                            ? ClipRect(
-                                child: Image.file(_imageFile),
-                              )
-                            : Container(
-                                width: 328.w,
-                                height: 328.w,
-                                decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  border: Border.all(
-                                      color: Color(0xFFF2F2F2), width: 4.w),
+                        Container(
+                          width: 328.w,
+                          height: 328.w,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                                color: CustomColors.lightGrey, width: 4.w),
+                          ),
+                          child: _image != null
+                              ? Image.file(
+                                  _imageFile,
+                                  fit: BoxFit.fitWidth,
+                                )
+                              : Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(bottom: 8.w),
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        size: 72.sp,
+                                        color: CustomColors.lightGrey,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Нажмите чтобы сделать фото',
+                                      style: TextStyle(
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w300,
+                                          color: CustomColors.darkGrey),
+                                    )
+                                  ],
                                 ),
-                              ),
+                        ),
                       ],
                     ),
                   ),
@@ -90,34 +146,155 @@ class _ItemFromCameraState extends State<ItemFromCamera> {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.w),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFFf2f2f2)),
-                              borderRadius: BorderRadius.circular(5.w))),
-                      onPressed: () {
-                        print('Составить образ с вещью');
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 16.w),
-                        child: Text(
-                          'Составить образ с вещью',
-                          style: TextStyle(
-                              color: Color(0xFF333333),
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.normal),
-                        ),
-                      )),
-                ),
+                child: AnimatedSwitcher(
+                    duration: Duration(milliseconds: 1000),
+                    child: clothingForm ?? SizedBox.shrink()),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildButton({PickedFile image}) {
+    return Container(
+      key: ValueKey(1),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: image == null ? CustomColors.lightGrey : Colors.white,
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1, color: Color(0xFFf2f2f2)),
+                    borderRadius: BorderRadius.circular(5.w))),
+            onPressed: image == null
+                ? null
+                : () {
+                    if (!formFlag) {
+                      setState(() {
+                        formFlag = true;
+                        clothingForm = _buildForm();
+                      });
+                    } else
+                      setState(() {
+                        formFlag = false;
+                        clothingForm = _buildButton();
+                      });
+                  },
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.w),
+              child: Text(
+                'Составить образ с вещью',
+                style: TextStyle(
+                    color: Color(0xFF333333),
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.normal),
+              ),
+            )),
+      ),
+    );
+  }
+
+  void _postNewClothing() {
+    final category = _categoryController.text;
+    final subCategory = _categoryController.text;
+    final brand = _brandController.text;
+    final size = _sizeController.text;
+    final url = _urlController.text;
+    final price = int.tryParse(_priceController.text) ?? 0;
+    Clothing newItem = Clothing(
+        category: category,
+        subCategory: subCategory,
+        brand: brand,
+        size: size,
+        url: url,
+        price: price,
+        seasons: selectedReportList);
+
+    BlocProvider.of<ClothingBloc>(context)
+        .add(CreateNewClothing(clothing: newItem));
+  }
+
+  Widget _buildForm() {
+    return Column(
+      key: ValueKey(1),
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+          child: CustomTextField(
+            labelText: 'Категория',
+            controller: _categoryController,
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+          child: CustomTextField(
+            labelText: 'Бренд',
+            controller: _brandController,
+          ),
+        ),
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+            child: CustomTextField(
+              labelText: 'Размер',
+              controller: _sizeController,
+            )),
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+            child: CustomTextField(
+              labelText: 'URL',
+              controller: _urlController,
+            )),
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+            child: CustomTextField(
+              labelText: 'Цена',
+              controller: _priceController,
+              keyboardType: TextInputType.number,
+            )),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+          child: MultiSelectChip(
+            title: 'Сезоны ношения',
+            reportList: reportList,
+            onSelectionChanged: (selectedList) {
+              setState(() {
+                selectedReportList = selectedList;
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
+          child: Container(
+            key: ValueKey(2),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Color(0xFFf2f2f2)),
+                        borderRadius: BorderRadius.circular(5.w))),
+                onPressed: () {
+                  _postNewClothing();
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.w),
+                  child: Text(
+                    'Сохранить вещь в гардероб',
+                    style: TextStyle(
+                        color: Color(0xFF333333),
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.normal),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

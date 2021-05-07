@@ -29,7 +29,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
     "зима",
     "весна",
   ];
-  List<String> selectedReportList = List();
+  List<String> selectedReportList = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
