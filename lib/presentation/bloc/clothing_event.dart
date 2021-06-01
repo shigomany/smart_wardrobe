@@ -16,3 +16,9 @@ class CreateNewClothing extends ClothingEvent {
 
   CreateNewClothing({this.clothing});
 }
+
+class FetchClothingById extends ClothingEvent {
+  int id;
+
+  FetchClothingById({this.id});
+}

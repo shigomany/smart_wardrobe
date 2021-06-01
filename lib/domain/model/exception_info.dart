@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'models.dart';
 
 class ExceptionInfo extends Equatable {
   final String message;

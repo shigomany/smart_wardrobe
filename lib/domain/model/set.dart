@@ -1,17 +1,10 @@
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
-import 'package:smartwardrobe/domain/model/clothing.dart';
-import 'package:smartwardrobe/domain/model/case.dart';
-import 'package:smartwardrobe/domain/model/season.dart';
+part of 'models.dart';
 
 class Set extends Equatable {
   final int id;
   final String name;
   final String description;
-  final String imgUrl;
+  final String imageUrl;
   final int minTemp;
   final int maxTemp;
   final List<Clothing> clothes;
@@ -22,7 +15,7 @@ class Set extends Equatable {
     this.id,
     this.name,
     this.description,
-    this.imgUrl,
+    this.imageUrl,
     this.minTemp,
     this.maxTemp,
     this.clothes,
@@ -30,8 +23,8 @@ class Set extends Equatable {
     this.seasons,
   });
 
-  ViewClothing get asViewClothing =>
-      ViewClothing(id: id, cardName: name, imageUrl: imgUrl, isSelected: false);
+  ViewClothing get asViewClothing => ViewClothing(
+      id: id, cardName: name, imageUrl: imageUrl, isSelected: false);
 
   @override
   bool get stringify => true;

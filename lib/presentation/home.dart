@@ -2,10 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:smartwardrobe/presentation/item/item.dart';
-import 'package:smartwardrobe/presentation/items/items.dart';
-import 'package:smartwardrobe/presentation/login/login.dart';
-import 'package:smartwardrobe/presentation/register/register.dart';
+import 'package:smartwardrobe/presentation/dispenser/dispenser.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _redirect() async {
     SchedulerBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).pushReplacementNamed(MainScreen.routeName);
+      Navigator.of(context).pushReplacementNamed(DispneserWindget.routeName);
     });
   }
 

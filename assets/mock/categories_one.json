@@ -1,0 +1,11 @@
+{
+    "name": "Обувь",
+    "URL": "https://www.lamoda.ru/c/17/shoes-men/",
+    "subcategory": [
+        {
+            "name": "Кроссовки и кеды",
+            "URL": "https://www.lamoda.ru/c/2981/shoes-krossovk-kedy-muzhskie/",
+            "subcategory": []
+        }
+    ]
+}

@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/custom_textfield.dart';
 import 'package:smartwardrobe/presentation/general/item_card.dart';
 import 'package:smartwardrobe/presentation/general/logo_bar.dart';
+import 'package:smartwardrobe/presentation/general/multi_chip.dart';
 import 'package:smartwardrobe/presentation/general/multi_select_chip.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class EditItemScreen extends StatefulWidget {
-  static String routeName = '/item';
-  const EditItemScreen({Key key}) : super(key: key);
+  static String routeName = '/edit_item';
+  final Clothing clothing;
+  const EditItemScreen({Key key, @required this.clothing}) : super(key: key);
 
   @override
   _EditItemScreenState createState() => _EditItemScreenState();
 }
 
 class _EditItemScreenState extends State<EditItemScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _categoryController.text = widget.clothing.subCategory.name;
+    _brandController.text = widget.clothing.brand.name;
+    _sizeController.text = widget.clothing.size;
+    _urlController.text = widget.clothing.url;
+    _priceController.text = widget.clothing.price.toString();
+  }
+
   final _categoryController = TextEditingController();
-  final _nameController = TextEditingController();
+  final _brandController = TextEditingController();
   final _sizeController = TextEditingController();
   final _urlController = TextEditingController();
+  final _priceController = TextEditingController();
 
-  List<String> reportList = [
-    "лето",
-    "осень",
-    "зима",
-    "весна",
-  ];
-  List<String> selectedReportList = [];
+  final formKey = GlobalKey<FormState>();
+
+  List<String> _selectedSeasons = [];
+  // final List<Season> seasons = [
+  //   Season(id: 0, name: 'зима'),
+  //   Season(id: 1, name: 'весна'),
+  //   Season(id: 2, name: 'лето'),
+  //   Season(id: 3, name: 'осень'),
+  // ];
+  final List<String> seasons = ['зима', 'весна', 'лето', 'осень'];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -60,9 +77,12 @@ class _EditItemScreenState extends State<EditItemScreen> {
                             width: 328.w,
                             height: 328.w,
                             decoration: BoxDecoration(
-                              color: Colors.amber,
                               border: Border.all(
                                   color: Color(0xFFF2F2F2), width: 4.w),
+                            ),
+                            child: Image.network(
+                              widget.clothing.imageUrl,
+                              fit: BoxFit.fitHeight,
                             ),
                           ),
                         ],
@@ -79,8 +99,8 @@ class _EditItemScreenState extends State<EditItemScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.w),
                     child: CustomTextField(
-                      labelText: 'Название',
-                      controller: _nameController,
+                      labelText: 'Бренд',
+                      controller: _brandController,
                     ),
                   ),
                   Padding(
@@ -96,17 +116,63 @@ class _EditItemScreenState extends State<EditItemScreen> {
                         controller: _urlController,
                       )),
                   Padding(
-                    padding: EdgeInsets.symmetric(vertical: 16.w),
-                    child: MultiSelectChip(
-                      title: 'Сезоны ношения',
-                      reportList: reportList,
-                      onSelectionChanged: (selectedList) {
-                        setState(() {
-                          selectedReportList = selectedList;
-                        });
-                      },
+                      padding: EdgeInsets.symmetric(vertical: 8.w),
+                      child: CustomTextField(
+                        labelText: 'Цена',
+                        controller: _priceController,
+                      )),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.w),
+                    // child: SeasonChips(
+                    //   title: 'Сезоны ношения',
+                    //   seasons: seasons,
+                    //   onSelectionChanged: (selectedList) {
+                    //     setState(() {
+                    //       _selectedSeasons = selectedList;
+                    //     });
+                    //   },
+                    // ),
+                    child: MultiSelectChipGroup(
+                      title: "Сезоны ношения",
+                      preSelectedItems: widget.clothing.seasons ?? [],
+                      items: seasons,
+                      selectedColor: CustomColors.textPrimaryLight,
+                      disabledColor: CustomColors.lightGrey,
+                      labelDisabledColor: Colors.black,
+                      labelSelectedColor: Colors.white,
+                      horizontalChipSpacing: 10,
+                      alignment: WrapAlignment.spaceEvenly,
+                      // onSelectionChanged: (selectedList) {
+                      //   setState(() {
+                      //     _selectedSeasons = selectedList;
+                      //   });
+                      // },
+                      isSelectionAllowed: true,
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.w),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: CustomColors.textPrimaryLight,
+                          ),
+                          onPressed: () {
+                            print('Сохранить изменения');
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.w),
+                            child: Text(
+                              'Сохранить изменения',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.normal),
+                            ),
+                          )),
+                    ),
+                  ),
                 ],
               ),
             )));

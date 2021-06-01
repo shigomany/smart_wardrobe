@@ -33,34 +33,41 @@ dependencies:
   equatable: ^1.2.5 # AKA equals and hashcode
   form_field_validator: ^1.1.0
   union: ^0.0.3+1
-  tuple: ^1.0.3
-  image_picker: ^0.7.4
+  tuple: ^2.0.0
+  image_picker: ^0.7.5+2
   loading_gifs: ^0.3.0
   shared_preferences: ^2.0.5
   auto_size_text: ^2.1.0
-  vnum: ^1.2.6 # Typed enums
-  json_annotation: ^3.1.0
+  # vnum: ^1.2.6 # Typed enums
+  json_annotation: ^4.0.1
   flutter_svg: ^0.21.0
-  list_ext: ^0.2.0 # Extending list methods
-  quiver: ^2.1.5 # Extending list methods
+  list_ext: ^1.0.2 # Extending list methods
+  quiver: ^3.0.1 # Extending list methods
   flutter_icons: ^1.1.0
   flutter_custom_dialog: ^1.0.20
   http: ^0.13.1
   intl: ^0.17.0
-  freezed_annotation: ^0.12.0
-
-
-
+  freezed_annotation: ^0.14.1
+  path_provider: ^2.0.1
+  camera: ^0.8.1
+  flutter_typeahead: ^3.1.3
+  permission_handler: ^7.1.0
+  image_cropper: ^1.4.0
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  url_launcher: ^6.0.4
+  
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   
-  json_serializable: ^3.5.1
-  flutter_rename_app: ^1.0.0
-  build_runner: ^1.10.11
-  freezed: ^0.12.7
+  json_serializable: ^4.1.0
+  #flutter_rename_app: ^1.0.0
+  build_runner: ^1.12.0
+  freezed: ^0.14.1
+  hive_generator: ^1.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

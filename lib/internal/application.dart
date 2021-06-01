@@ -6,9 +6,13 @@ import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/internal/di/global.dart';
 import 'package:smartwardrobe/internal/di/init.dart';
 import 'package:smartwardrobe/presentation/bloc/auth.dart';
+import 'package:smartwardrobe/presentation/bloc/brand.dart';
+import 'package:smartwardrobe/presentation/bloc/category.dart';
 import 'package:smartwardrobe/presentation/bloc/clothing.dart';
+import 'package:smartwardrobe/presentation/bloc/image_file.dart';
 import 'package:smartwardrobe/presentation/bloc/set.dart';
 import 'package:smartwardrobe/presentation/bloc/weather.dart';
+import 'package:smartwardrobe/presentation/dispenser/dispenser.dart';
 import 'package:smartwardrobe/presentation/edit_item/edit_item.dart';
 import 'package:smartwardrobe/presentation/home.dart';
 import 'package:smartwardrobe/presentation/item/item.dart';
@@ -45,6 +49,15 @@ class Application extends StatelessWidget {
         ),
         BlocProvider<SetBloc>(
           create: (context) => sl<SetBloc>(),
+        ),
+        BlocProvider<CategoryBloc>(
+          create: (context) => sl<CategoryBloc>(),
+        ),
+        BlocProvider<BrandBloc>(
+          create: (context) => sl<BrandBloc>(),
+        ),
+        BlocProvider<ImageFileBloc>(
+          create: (context) => sl<ImageFileBloc>(),
         )
       ],
       child: ScreenUtilInit(
@@ -56,15 +69,14 @@ class Application extends StatelessWidget {
           theme: defaultTheme(context),
           initialRoute: RegisterScreen.routeName,
           routes: {
+            DispneserWindget.routeName: (_) => const DispneserWindget(),
             HomeScreen.routeName: (_) => const HomeScreen(),
             LoginScreen.routeName: (_) => const LoginScreen(),
             RegisterScreen.routeName: (_) => RegisterScreen(),
-            MainScreen.routeName: (_) => const MainScreen(),
-            ItemsScreen.routeName: (_) => const ItemsScreen(),
-            ItemScreen.routeName: (_) => const ItemScreen(
-                  item: null,
-                ),
-            EditItemScreen.routeName: (_) => const EditItemScreen(),
+            // MainScreen.routeName: (_) => const MainScreen(),
+            // ItemsScreen.routeName: (_) => const ItemsScreen(),
+            ItemScreen.routeName: (_) => const ItemScreen(),
+            // EditItemScreen.routeName: (_) => const EditItemScreen(),
             ItemFromCamera.routeName: (_) => ItemFromCamera(),
           },
         ),

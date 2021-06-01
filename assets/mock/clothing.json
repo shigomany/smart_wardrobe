@@ -1,9 +1,25 @@
 [
     {
         "id": 1,
-        "category": "Верхняя одежда",
-        "subCategory": "Куртка джинсовая",
-        "brand": "Produkt",
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Джинсовые куртки",
+            "URL": "https://www.lamoda.ru/c/2504/clothes-jeans-kurtki/",
+            "tags": [
+                "Одежда",
+                "Верхняя одежда"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Produkt",
+            "URL": "https://www.lamoda.ru/b/26286/brand-produkt/"
+        },
         "size": "L",
         "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
         "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
@@ -12,9 +28,25 @@
     },
     {
         "id": 2,
-        "category": "Верхняя одежда",
-        "subCategory": "Куртка джинсовая",
-        "brand": "Tommy Jeans",
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Джинсовые куртки",
+            "URL": "https://www.lamoda.ru/c/2504/clothes-jeans-kurtki/",
+            "tags": [
+                "Одежда",
+                "Верхняя одежда"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Tommy Jeans",
+            "URL": "https://www.lamoda.ru/b/26934/brand-tommyjeans/"
+        },
         "size": "M",
         "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAE074501_13904890_1_v1_2x.jpg",
         "url": "https://www.lamoda.ru/p/rtlaae074501/clothes-tommyjeans-kurtka-dzhinsovaya/",
@@ -26,9 +58,25 @@
     },
     {
         "id": 3,
-        "category": "Верхняя одежда",
-        "subCategory": "Пальто",
-        "brand": "Caravan",
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Пальто",
+            "URL": "https://www.lamoda.ru/c/487/clothes-muzhskie-palto/",
+            "tags": [
+                "Одежда",
+                "Верхняя одежда"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Caravan",
+            "URL": "https://www.lamoda.ru/b/29372/brand-caravan/"
+        },
         "size": "55",
         "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM0S89N_13185768_1_v1_2x.jpg",
         "url": "https://www.lamoda.ru/p/mp002xm0s89n/clothes-caravan-polupalto/",
@@ -37,9 +85,25 @@
     },
     {
         "id": 4,
-        "category": "Туфли",
-        "subCategory": "Лоферы",
-        "brand": "Ralf Ringer",
+        "category": {
+            "name": "Обувь",
+            "URL": "https://www.lamoda.ru/c/17/shoes-men/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Лоферы",
+            "URL": "https://www.lamoda.ru/c/2980/shoes-muzskie-loufery/",
+            "tags": [
+                "Обувь",
+                "Туфли"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Ralf Ringer",
+            "URL": "https://www.lamoda.ru/b/463/brand-ralfringer/"
+        },
         "size": "44",
         "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1GVZQ_9049842_1_v1.jpg",
         "url": "https://www.lamoda.ru/p/mp002xm1gvzq/shoes-ralfringer-tufli/?source_rec_type=alsobuy",
@@ -50,9 +114,25 @@
     },
     {
         "id": 5,
-        "category": "Рубашки",
-        "subCategory": "Рубашки с длинным рукавом",
-        "brand": "Henderson",
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Рубашки с длинным рукавом",
+            "URL": "https://www.lamoda.ru/c/2518/clothes-muzhskie-rubashki-s-dlinnym/",
+            "tags": [
+                "Одежда",
+                "Рубашки"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Henderson",
+            "URL": "https://www.lamoda.ru/b/30180/brand-henderson/"
+        },
         "size": "L",
         "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM16001_11079864_1_v1_2x.jpg",
         "url": "https://www.lamoda.ru/p/mp002xm16001/clothes-henderson-rubashka/",
@@ -64,9 +144,25 @@
     },
     {
         "id": 6,
-        "category": "Ботинки",
-        "subCategory": "Высокие ботинки",
-        "brand": "Tommy Hilfiger",
+        "category": {
+            "name": "Обувь",
+            "URL": "https://www.lamoda.ru/c/17/shoes-men/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Высокие ботинки",
+            "URL": "https://www.lamoda.ru/c/5320/shoes-vysokiebotinkimuj/",
+            "tags": [
+                "Обувь",
+                "Ботинки"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Tommy Hilfiger",
+            "URL": "https://www.lamoda.ru/b/573/brand-tommyhilfiger/"
+        },
         "size": "44",
         "image_url": "https://a.lmcdn.ru/img600x866/T/O/TO263AMKPKR4_12251045_1_v1.jpg",
         "url": "https://www.lamoda.ru/p/to263amkpkr4/shoes-tommyhilfiger-botinki/",
@@ -77,9 +173,25 @@
     },
     {
         "id": 7,
-        "category": "Туфли",
-        "subCategory": "Дерби",
-        "brand": "Ecco",
+        "category": {
+            "name": "Обувь",
+            "URL": "https://www.lamoda.ru/c/17/shoes-men/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Дерби",
+            "URL": "https://www.lamoda.ru/c/5315/shoes-derbimuj/",
+            "tags": [
+                "Обувь",
+                "Туфли"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Ecco",
+            "URL": "https://www.lamoda.ru/b/5711/brand-ecco/"
+        },
         "size": "44",
         "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM1HF2X_13875771_1_v1.jpg",
         "url": "https://www.lamoda.ru/p/mp002xm1hf2x/shoes-ecco-tufli/",
@@ -93,9 +205,25 @@
     },
     {
         "id": 8,
-        "category": "Брюки",
-        "subCategory": "Повседневные брюки",
-        "brand": "Finn Flare",
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Повседневные брюки",
+            "URL": "https://www.lamoda.ru/c/2638/clothes-brukim/",
+            "tags": [
+                "Одежда",
+                "Брюки"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Finn Flare",
+            "URL": "https://www.lamoda.ru/b/6642/brand-finnflare/"
+        },
         "size": "8",
         "image_url": "https://a.lmcdn.ru/img600x866/M/P/MP002XM20VRE_11328926_1_v1.jpeg",
         "url": "https://www.lamoda.ru/p/mp002xm20vre/clothes-finnflare-bryuki/",

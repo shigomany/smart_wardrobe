@@ -3,19 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quiver/iterables.dart';
+
 import 'package:smartwardrobe/domain/model/models.dart';
+import 'package:smartwardrobe/presentation/bloc/clothing.dart';
 import 'package:smartwardrobe/presentation/bloc/set.dart';
 import 'package:smartwardrobe/presentation/edit_item/edit_item.dart';
 import 'package:smartwardrobe/presentation/general/bottom_bar.dart';
 import 'package:smartwardrobe/presentation/general/bottom_dialog.dart';
+import 'package:smartwardrobe/presentation/general/clothing_card.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/item_card.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ItemScreen extends StatefulWidget {
   static String routeName = '/item';
   final Clothing item;
-  const ItemScreen({Key key, @required this.item}) : super(key: key);
+  const ItemScreen({Key key, this.item}) : super(key: key);
 
   @override
   _ItemScreenState createState() => _ItemScreenState();
@@ -23,27 +28,38 @@ class ItemScreen extends StatefulWidget {
 
 class _ItemScreenState extends State<ItemScreen> {
   List<Set> sets;
+  //Clothing item;
 
   Future navigateBack(context) async {
     Navigator.of(context).pop();
-    dispose();
   }
 
   Future navigateToEditScreen(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EditItemScreen()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => EditItemScreen(clothing: widget.item)));
   }
 
   @override
   void initState() {
     BlocProvider.of<SetBloc>(context)..add(FetchRelatedSets(1));
+    //BlocProvider.of<ClothingBloc>(context)..add(FetchClothingById(id: 1));
+
     super.initState();
   }
 
   @override
   void dispose() {
-    sets = [];
     super.dispose();
+  }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -113,128 +129,146 @@ class _ItemScreenState extends State<ItemScreen> {
             child: ListView(
               scrollDirection: Axis.vertical,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 16.w, left: 8.w, right: 8.w),
-                  child: Container(
-                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                      BoxShadow(
-                          color: Color.fromRGBO(119, 119, 119, 0.25),
-                          blurRadius: 7,
-                          offset: Offset(0, 3))
-                    ]),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 328.w,
-                          height: 328.w,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Color(0xFFF2F2F2), width: 4.w),
-                          ),
-                          child: Image.network(widget.item.imageUrl,
-                              fit: BoxFit.scaleDown),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(16.w),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.item.brand,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 16.sp,
-                                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: 16.w, left: 8.w, right: 8.w),
+                      child: Container(
+                        decoration:
+                            BoxDecoration(color: Colors.white, boxShadow: [
+                          BoxShadow(
+                              color: Color.fromRGBO(119, 119, 119, 0.25),
+                              blurRadius: 7,
+                              offset: Offset(0, 3))
+                        ]),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 328.w,
+                              height: 328.w,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Color(0xFFF2F2F2), width: 4.w),
                               ),
-                              Text(widget.item.subCategory,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 16.sp,
-                                      height: 1.5)),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 16.w, left: 8.w, right: 8.w),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 8.w),
-                          child: Container(
-                            decoration:
-                                BoxDecoration(color: Colors.white, boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(119, 119, 119, 0.25),
-                                  blurRadius: 7,
-                                  offset: Offset(0, 3))
-                            ]),
-                            child: Padding(
-                              padding: EdgeInsets.all(8.w),
+                              child: Image.network(widget.item.imageUrl,
+                                  fit: BoxFit.scaleDown),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(16.w),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Размер',
+                                    widget.item.brand.name,
                                     style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w300,
-                                        color: Color(0xFF696767)),
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 16.sp,
+                                    ),
                                   ),
-                                  Text(widget.item.size,
+                                  Text(widget.item.subCategory.name,
                                       style: TextStyle(
+                                          fontWeight: FontWeight.normal,
                                           fontSize: 16.sp,
-                                          fontWeight: FontWeight.w300,
-                                          height: 1.5))
+                                          height: 1.5)),
                                 ],
                               ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          decoration:
-                              BoxDecoration(color: Colors.white, boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(119, 119, 119, 0.25),
-                                blurRadius: 7,
-                                offset: Offset(0, 3))
-                          ]),
-                          child: Padding(
-                            padding: EdgeInsets.all(8.w),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'URL вещи в магазине',
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w300,
-                                      color: Color(0xFF696767)),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsets.only(top: 16.w, left: 8.w, right: 8.w),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 8.w),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(
+                                              119, 119, 119, 0.25),
+                                          blurRadius: 7,
+                                          offset: Offset(0, 3))
+                                    ]),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.w),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Размер',
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xFF696767)),
+                                      ),
+                                      Text(widget.item.size,
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w300,
+                                              height: 1.5))
+                                    ],
+                                  ),
                                 ),
-                                Text(widget.item.url.replaceAll("", "\u{200B}"),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w300,
-                                        height: 1.5))
-                              ],
+                              ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
+                          Expanded(
+                            flex: 3,
+                            child: InkWell(
+                              onTap: () => _launchURL(widget.item.url),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color.fromRGBO(
+                                              119, 119, 119, 0.25),
+                                          blurRadius: 7,
+                                          offset: Offset(0, 3))
+                                    ]),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.w),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'URL вещи в магазине',
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: Color(0xFF696767)),
+                                      ),
+                                      Text(
+                                          widget.item.url
+                                              .replaceAll("", "\u{200B}"),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w300,
+                                              height: 1.5))
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding:
@@ -272,7 +306,12 @@ class _ItemScreenState extends State<ItemScreen> {
                     )),
                 Padding(
                   padding: EdgeInsets.only(top: 8.w, bottom: 16.w),
-                  child: BlocBuilder<SetBloc, SetState>(
+                  child: BlocConsumer<SetBloc, SetState>(
+                    listener: (context, state) {
+                      if (state is SetsListLoaded) {
+                        sets = state.sets;
+                      }
+                    },
                     builder: (context, state) {
                       if (state is SetInitial) {
                         return Center(
@@ -287,14 +326,17 @@ class _ItemScreenState extends State<ItemScreen> {
                           ),
                         );
                       } else if (state is SetsListLoaded) {
-                        print(state.sets);
-                        return Wrap(
-                          children: [
-                            ItemCard(widthScreen: widthScreen),
-                            ItemCard(widthScreen: widthScreen),
-                            ItemCard(widthScreen: widthScreen)
-                          ],
-                        );
+                        //TODO: карточки для сетов
+                        // return Wrap(
+                        //   children: [
+                        //     for (var i in enumerate(
+                        //         sets))
+                        //       ClothingCard(
+                        //           onChangeState: (int i) {},
+                        //           onDeleteItem: (int i) {},
+                        //           item: i)
+                        //   ],
+                        // );
                       }
                     },
                   ),

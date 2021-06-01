@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quiver/iterables.dart';
+
 import 'package:smartwardrobe/domain/model/clothing_image.dart';
 import 'package:smartwardrobe/presentation/bloc/weather.dart';
 import 'package:smartwardrobe/presentation/general/bottom_bar.dart';
 import 'package:smartwardrobe/presentation/general/bottom_dialog.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
-
 import 'package:smartwardrobe/presentation/general/slider_with_button.dart';
 import 'package:smartwardrobe/presentation/main/weather_widget.dart';
 import 'package:smartwardrobe/resources/resources.dart';
@@ -18,7 +17,14 @@ import 'package:smartwardrobe/util/custom_colors.dart';
 class MainScreen extends StatefulWidget {
   static String routeName = '/main';
 
-  const MainScreen({Key key}) : super(key: key);
+  const MainScreen({
+    Key key,
+    @required this.selectedIndex,
+    @required this.onTapNavigator,
+  }) : super(key: key);
+
+  final int selectedIndex;
+  final ValueChanged<int> onTapNavigator;
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -154,7 +160,9 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: CustomColors.textPrimaryLight,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomBar(),
+        bottomNavigationBar: BottomBar(
+          onTapItem: widget.onTapNavigator,
+        ),
       ),
     );
   }

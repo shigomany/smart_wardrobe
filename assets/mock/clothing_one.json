@@ -1,14 +1,30 @@
-{
-    "id": 1,
-    "category": "Ropinirole Hydrochloride",
-    "subCategory": "Ropinirole Hydrochloride",
-    "brand": "Major Pharmaceuticals",
-    "size": "1",
-    "image_url": "https://dummyimage.com/211x100.png/ff4444/ffffff",
-    "url": "https://ustream.tv/ridiculus/mus/etiam/vel/augue.jpg?amet",
-    "price": 1,
-    "seasons": [
-        "зима",
-        "весна"
-    ]
-}
+    {
+        "id": 1,
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Джинсовые куртки",
+            "URL": "https://www.lamoda.ru/c/2504/clothes-jeans-kurtki/",
+            "tags": [
+                "Одежда",
+                "Верхняя одежда"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Produkt",
+            "URL": "https://www.lamoda.ru/b/26286/brand-produkt/"
+        },
+        "size": "L",
+        "image_url": "https://a.lmcdn.ru/img600x866/R/T/RTLAAB738702_13499393_1_v1_2x.jpg",
+        "url": "https://www.lamoda.ru/p/rtlaab738702/clothes-produkt-kurtka-dzhinsovaya/",
+        "price": 3950,
+        "seasons": [
+            "весна",
+            "лето"
+        ]
+    }

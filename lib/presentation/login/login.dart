@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartwardrobe/presentation/dispenser/dispenser.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';
 import 'package:smartwardrobe/presentation/register/register.dart';
 import 'package:smartwardrobe/resources/resources.dart';
@@ -78,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: ElevatedButton.styleFrom(
                         primary: CustomColors.textPrimary),
                     onPressed: () {
-                      navigateToScreen(context, MainScreen());
+                      navigateToScreen(context, DispneserWindget());
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.w),

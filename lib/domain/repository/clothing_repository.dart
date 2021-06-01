@@ -4,4 +4,6 @@ abstract class ClothingRepository {
   Future<List<Clothing>> getAllClothing();
 
   Future<Clothing> postNewClothing({Clothing clothing});
+
+  Future<Clothing> getClothingById(int id);
 }

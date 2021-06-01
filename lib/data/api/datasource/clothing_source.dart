@@ -25,11 +25,19 @@ class ClothingSource {
     ));
   }
 
-  //TO DO: когда будет готов бэк
-  // Future<ApiClothing> getAllClothing() async {
+  //TODO: когда будет готов бэк
+  // Future<List<ApiClothing>> getAllClothing() async {
   //   final response = await _dio.get('clothing/all_clothing');
 
-  //   return ApiClothing.fromApi(response.data);
+  //    if (response is List<dynamic>) {
+  //     List<ApiClothing> clothes =
+  //         response.data.map((e) => ApiClothing.fromApi(e)).toList();
+
+  //     return clothes;
+  //   } else {
+  //     List<ApiClothing> clothes = [ApiClothing.fromApi(response.data)];
+  //     return clothes;
+  //   }
   // }
 
   Future<List<ApiClothing>> getAllClothing() async {
@@ -45,6 +53,13 @@ class ClothingSource {
       List<ApiClothing> clothes = [ApiClothing.fromApi(response)];
       return clothes;
     }
+  }
+
+  Future<ApiClothing> getClothingById(int id) async {
+    final response =
+        await json.decode(await rootBundle.loadString(MockPaths.clothing_one));
+
+    return ApiClothing.fromApi(response);
   }
 
   Future<ApiClothing> postNewClothing(Clothing clothing) async {

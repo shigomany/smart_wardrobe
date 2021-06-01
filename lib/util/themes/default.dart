@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smartwardrobe/util/custom_colors.dart';
 
 ThemeData defaultTheme(BuildContext context) => ThemeData(
       // fontFamily: 'Rubik',

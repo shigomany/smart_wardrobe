@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
 import 'package:smartwardrobe/data/api/model/models.dart';
-import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/resources/resources.dart';
 import 'package:smartwardrobe/util/constants.dart';
 

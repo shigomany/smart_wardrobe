@@ -1,0 +1,774 @@
+[
+    {
+        "name": "Одежда",
+        "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+        "tags": [],
+        "subcategory": [
+            {
+                "name": "Горнолыжные брюки",
+                "URL": "https://www.lamoda.ru/c/5983/clothes-gornolyzhniebryuki/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Джоггеры",
+                "URL": "https://www.lamoda.ru/c/7602/clothes-men-joggers/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Зауженные брюки",
+                "URL": "https://www.lamoda.ru/c/6100/clothes-muzhzauzhennyebryuki/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Карго",
+                "URL": "https://www.lamoda.ru/c/7601/clothes-men-kargo/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Классические брюки",
+                "URL": "https://www.lamoda.ru/c/725/clothes-muzhskie-bryuki-klassicheskiye/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Повседневные брюки",
+                "URL": "https://www.lamoda.ru/c/2638/clothes-brukim/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Прямые брюки",
+                "URL": "https://www.lamoda.ru/c/6099/clothes-muzhpryamyebryuki/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Спортивные брюки",
+                "URL": "https://www.lamoda.ru/c/2299/clothes-muzhskie-bryuki-sportivnie/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Тайтсы",
+                "URL": "https://www.lamoda.ru/c/6098/clothes-muzhtaytsy/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Утепленные брюки",
+                "URL": "https://www.lamoda.ru/c/3211/clothes-teplie-bruki/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Чиносы",
+                "URL": "https://www.lamoda.ru/c/7600/clothes-men-chinos/",
+                "tags": [
+                    "Одежда",
+                    "Брюки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Анораки",
+                "URL": "https://www.lamoda.ru/c/7593/clothes-men-anoraks/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Бомберы",
+                "URL": "https://www.lamoda.ru/c/6102/clothes-muzhbombery/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Горнолыжные куртки",
+                "URL": "https://www.lamoda.ru/c/3620/clothes-men-snowboard-kyrtki/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Демисезонные куртки",
+                "URL": "https://www.lamoda.ru/c/485/clothes-muzhskie-kurtki/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Джинсовые куртки",
+                "URL": "https://www.lamoda.ru/c/2504/clothes-jeans-kurtki/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Джинсовые жилеты",
+                "URL": "https://www.lamoda.ru/c/5286/clothes-jeansverhniezhiletymuj/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда",
+                    "Жилеты"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Утепленные жилеты",
+                "URL": "https://www.lamoda.ru/c/5287/clothes-uteplenniezhiletymuj/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда",
+                    "Жилеты"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Кожаные куртки",
+                "URL": "https://www.lamoda.ru/c/2503/clothes-kozhanye-kurtki/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Косухи",
+                "URL": "https://www.lamoda.ru/c/7597/clothes-men-kosuhi/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Легкие куртки и ветровки",
+                "URL": "https://www.lamoda.ru/c/2505/clothes-muzhskie-vetrovki/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Пальто",
+                "URL": "https://www.lamoda.ru/c/487/clothes-muzhskie-palto/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Парки",
+                "URL": "https://www.lamoda.ru/c/3561/clothes-parki-muj/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Плащи",
+                "URL": "https://www.lamoda.ru/c/5285/clothes-plaschi-muj/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Зимние куртки",
+                "URL": "https://www.lamoda.ru/c/3816/clothes-men-winter-jackets/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда",
+                    "Пуховики и зимние куртки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Пуховики",
+                "URL": "https://www.lamoda.ru/c/3817/clothes-men-jackets/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда",
+                    "Пуховики и зимние куртки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Шубы и дубленки",
+                "URL": "https://www.lamoda.ru/c/4359/default-dublenki-muj/",
+                "tags": [
+                    "Одежда",
+                    "Верхняя одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Водолазки",
+                "URL": "https://www.lamoda.ru/c/501/clothes-muzhskie-vodolazki/",
+                "tags": [
+                    "Одежда",
+                    "Джемперы, свитеры и кардиганы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Джемперы",
+                "URL": "https://www.lamoda.ru/c/5975/clothes-muzhjempery/",
+                "tags": [
+                    "Одежда",
+                    "Джемперы, свитеры и кардиганы",
+                    "Джемперы и пуловеры"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Пуловеры",
+                "URL": "https://www.lamoda.ru/c/5976/clothes-muzhpulovery/",
+                "tags": [
+                    "Одежда",
+                    "Джемперы, свитеры и кардиганы",
+                    "Джемперы и пуловеры"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Жилеты",
+                "URL": "https://www.lamoda.ru/c/2507/clothes-muzhskie-zhileti/",
+                "tags": [
+                    "Одежда",
+                    "Джемперы, свитеры и кардиганы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Кардиганы",
+                "URL": "https://www.lamoda.ru/c/505/clothes-muzhskie-cardigany/",
+                "tags": [
+                    "Одежда",
+                    "Джемперы, свитеры и кардиганы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Свитеры",
+                "URL": "https://www.lamoda.ru/c/5288/clothes-svitery-muj/",
+                "tags": [
+                    "Одежда",
+                    "Джемперы, свитеры и кардиганы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Зауженные джинсы",
+                "URL": "https://www.lamoda.ru/c/2635/clothes-zauzhennyem/",
+                "tags": [
+                    "Одежда",
+                    "Джинсы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Прямые джинсы",
+                "URL": "https://www.lamoda.ru/c/2636/clothes-pryamyem/",
+                "tags": [
+                    "Одежда",
+                    "Джинсы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Майки",
+                "URL": "https://www.lamoda.ru/c/2516/clothes-muzhskie-maiki/",
+                "tags": [
+                    "Одежда",
+                    "Майки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Спортивные майки",
+                "URL": "https://www.lamoda.ru/c/3040/clothes-sportivnye-topy-muzhskie/",
+                "tags": [
+                    "Одежда",
+                    "Майки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Жилеты",
+                "URL": "https://www.lamoda.ru/c/3045/clothes-jilety-muzhskie/",
+                "tags": [
+                    "Одежда",
+                    "Пиджаки и костюмы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Костюмы",
+                "URL": "https://www.lamoda.ru/c/521/clothes-muzhskie-kostyumy/",
+                "tags": [
+                    "Одежда",
+                    "Пиджаки и костюмы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Пиджаки",
+                "URL": "https://www.lamoda.ru/c/3044/clothes-pidzhaki-i-zhaketi/",
+                "tags": [
+                    "Одежда",
+                    "Пиджаки и костюмы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Джинсовые рубашки",
+                "URL": "https://www.lamoda.ru/c/4076/clothes-muzhskie-rubashki-jeans/",
+                "tags": [
+                    "Одежда",
+                    "Рубашки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Рубашки с длинным рукавом",
+                "URL": "https://www.lamoda.ru/c/2518/clothes-muzhskie-rubashki-s-dlinnym/",
+                "tags": [
+                    "Одежда",
+                    "Рубашки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Рубашки с коротким рукавом",
+                "URL": "https://www.lamoda.ru/c/2517/clothes-muzhskie-rubashki-s-korotkim/",
+                "tags": [
+                    "Одежда",
+                    "Рубашки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Спортивные костюмы",
+                "URL": "https://www.lamoda.ru/c/3042/clothes-sportivnye-kostyumy-muzhskie/",
+                "tags": [
+                    "Одежда"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Олимпийки",
+                "URL": "https://www.lamoda.ru/c/2510/clothes-muzhskie-olympiiki/",
+                "tags": [
+                    "Одежда",
+                    "Толстовки и олимпийки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Свитшоты",
+                "URL": "https://www.lamoda.ru/c/3564/clothes-sweatshirts-men/",
+                "tags": [
+                    "Одежда",
+                    "Толстовки и олимпийки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Толстовки",
+                "URL": "https://www.lamoda.ru/c/3210/clothes-muzhskie-tolstovki/",
+                "tags": [
+                    "Одежда",
+                    "Толстовки и олимпийки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Флиски",
+                "URL": "https://www.lamoda.ru/c/3037/clothes-flis-tolstovki-muzhskie/",
+                "tags": [
+                    "Одежда",
+                    "Толстовки и олимпийки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Худи",
+                "URL": "https://www.lamoda.ru/c/2511/clothes-muzhskie-hudi/",
+                "tags": [
+                    "Одежда",
+                    "Толстовки и олимпийки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Лонгсливы",
+                "URL": "https://www.lamoda.ru/c/2514/clothes-muz-futbolki-s-dlinnym/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Комплекты",
+                "URL": "https://www.lamoda.ru/c/6104/clothes-muzhkomplektyfutbolok/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Поло с длинным рукавом",
+                "URL": "https://www.lamoda.ru/c/5980/clothes-muzhpolosdlinnymrukavom/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло",
+                    "Поло"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Поло с коротким рукавом",
+                "URL": "https://www.lamoda.ru/c/5979/clothes-muzhpoloskorrukavom/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло",
+                    "Поло"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Спортивные лонгсливы",
+                "URL": "https://www.lamoda.ru/c/6101/clothes-muzhsportivnyelongslivy/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло",
+                    "Спортивные футболки и лонгсливы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Спортивные футболки",
+                "URL": "https://www.lamoda.ru/c/3038/clothes-sportivnye-futbolki-muzhskie/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло",
+                    "Спортивные футболки и лонгсливы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Футболки с коротким рукавом",
+                "URL": "https://www.lamoda.ru/c/2513/clothes-muz-futbolki-s-korotkim/",
+                "tags": [
+                    "Одежда",
+                    "Футболки и поло"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Бриджи",
+                "URL": "https://www.lamoda.ru/c/3041/clothes-kapri-muzhskie/",
+                "tags": [
+                    "Одежда",
+                    "Шорты"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Джинсовые шорты",
+                "URL": "https://www.lamoda.ru/c/2520/clothes-muz-jeans-shorty/",
+                "tags": [
+                    "Одежда",
+                    "Шорты"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Повседневные шорты",
+                "URL": "https://www.lamoda.ru/c/2523/clothes-muz-povsednevnye-shorty/",
+                "tags": [
+                    "Одежда",
+                    "Шорты"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Спортивные шорты",
+                "URL": "https://www.lamoda.ru/c/2521/clothes-muz-sport-shorty/",
+                "tags": [
+                    "Одежда",
+                    "Шорты"
+                ],
+                "subcategory": []
+            }
+        ]
+    },
+    {
+        "name": "Обувь",
+        "URL": "https://www.lamoda.ru/c/17/shoes-men/",
+        "tags": [],
+        "subcategory": [
+            {
+                "name": "Высокие ботинки",
+                "URL": "https://www.lamoda.ru/c/5320/shoes-vysokiebotinkimuj/",
+                "tags": [
+                    "Обувь",
+                    "Ботинки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Дезерты",
+                "URL": "https://www.lamoda.ru/c/5322/shoes-dezerty/",
+                "tags": [
+                    "Обувь",
+                    "Ботинки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Низкие ботинки",
+                "URL": "https://www.lamoda.ru/c/167/shoes-muzhskie-klassicheskie-botinki/",
+                "tags": [
+                    "Обувь",
+                    "Ботинки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Тимберленды",
+                "URL": "https://www.lamoda.ru/c/3329/shoes-mens-timberlands/",
+                "tags": [
+                    "Обувь",
+                    "Ботинки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Трекинговые ботинки",
+                "URL": "https://www.lamoda.ru/c/179/shoes-muzhskie-sportivnie-botinki/",
+                "tags": [
+                    "Обувь",
+                    "Ботинки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Челси",
+                "URL": "https://www.lamoda.ru/c/5321/shoes-chelseamuj/",
+                "tags": [
+                    "Обувь",
+                    "Ботинки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Домашняя обувь",
+                "URL": "https://www.lamoda.ru/c/211/shoes-domashnaja-obuv/",
+                "tags": [],
+                "subcategory": []
+            },
+            {
+                "name": "Бутсы",
+                "URL": "https://www.lamoda.ru/c/2981/shoes-krossovk-kedy-muzhskie/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Бутсы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Зальные бутсы",
+                "URL": "https://www.lamoda.ru/c/6132/shoes-muzhskiefutzalki/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Бутсы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Шиповки",
+                "URL": "https://www.lamoda.ru/c/6131/shoes-muzhskieshipovki/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Бутсы"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Высокие кеды",
+                "URL": "https://www.lamoda.ru/c/5319/default-vysokiekedymuj/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Кеды"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Низкие кеды",
+                "URL": "https://www.lamoda.ru/c/61/shoes-muzhskie-kedy/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Кеды"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Высокие кроссовки",
+                "URL": "https://www.lamoda.ru/c/5318/shoes-vysokiekrossovkimuj/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Кроссовки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Низкие кроссовки",
+                "URL": "https://www.lamoda.ru/c/159/shoes-muzhskie-krossovki/",
+                "tags": [
+                    "Обувь",
+                    "Кроссовки и кеды",
+                    "Кроссовки"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Мокасины",
+                "URL": "https://www.lamoda.ru/c/2455/shoes-muzhskie-mokasini/",
+                "tags": [
+                    "Обувь",
+                    "Мокасины и топсайдеры"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Топсайдеры",
+                "URL": "https://www.lamoda.ru/c/2456/shoes-myzskie-topsaydery/",
+                "tags": [
+                    "Обувь",
+                    "Мокасины и топсайдеры"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Сандалии",
+                "URL": "https://www.lamoda.ru/c/59/shoes-muzhskie-sandalii/",
+                "tags": [
+                    "Обувь"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Слипоны",
+                "URL": "https://www.lamoda.ru/c/5324/shoes-sliponyespadrilimuj/",
+                "tags": [
+                    "Обувь"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Дерби",
+                "URL": "https://www.lamoda.ru/c/5315/shoes-derbimuj/",
+                "tags": [
+                    "Обувь",
+                    "Туфли"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Лоферы",
+                "URL": "https://www.lamoda.ru/c/2980/shoes-muzskie-loufery/",
+                "tags": [
+                    "Обувь",
+                    "Туфли"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Монки",
+                "URL": "https://www.lamoda.ru/c/5317/shoes-monkimuj/",
+                "tags": [
+                    "Обувь",
+                    "Туфли"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Оксфорды",
+                "URL": "https://www.lamoda.ru/c/5316/shoes-oxfordymuj/",
+                "tags": [
+                    "Обувь",
+                    "Туфли"
+                ],
+                "subcategory": []
+            },
+            {
+                "name": "Эспадрильи",
+                "URL": "https://www.lamoda.ru/c/2457/shoes-myzskie-espadrily/",
+                "tags": [
+                    "Обувь",
+                    "Туфли"
+                ],
+                "subcategory": []
+            }
+        ]
+    }
+]

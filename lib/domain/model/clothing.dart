@@ -1,88 +1,52 @@
-import 'package:flutter/foundation.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
+part of 'models.dart';
 
-import 'package:smartwardrobe/domain/model/case.dart';
-import 'package:smartwardrobe/domain/model/season.dart';
+class Clothing extends Equatable {
+  final int id;
+  final ClothingCategory category;
+  final ClothingCategory subCategory;
+  final Brand brand;
+  final String size;
+  final String imageUrl;
+  final String url;
+  final int price;
+  final List<String> seasons;
 
-part 'clothing.freezed.dart';
+  bool isSelected;
 
-@freezed
-abstract class Clothing with _$Clothing {
-  const Clothing._();
+  Clothing(
+      {this.id,
+      this.category,
+      this.subCategory,
+      this.brand,
+      this.size,
+      this.imageUrl,
+      this.url,
+      this.price,
+      this.seasons,
+      this.isSelected});
 
-  const factory Clothing.listCardClothing(
-      {@required int id,
-      @required String category,
-      @required String subCategory,
-      @required String brand,
-      @required String size,
-      @required String imageUrl,
-      @required String url,
-      @required int price,
-      @required List<String> seasons,
-      @Default(false) bool isSelected}) = _ListCardClothing;
+  ViewClothing get asViewClothing => ViewClothing(
+      id: id,
+      cardName: brand.name + ' ' + subCategory.name,
+      imageUrl: imageUrl,
+      isSelected: isSelected);
 
-  const factory Clothing.listCardSet(
-      {@required int id,
-      @required String name,
-      @required String description,
-      @required String imgUrl,
-      @required int minTemp,
-      @required int maxTemp,
-      @required List<Clothing> clothes,
-      @required List<Case> cases,
-      @required List<Season> seasons,
-      @Default(false) bool isSelected}) = _ListCardSet;
+  @override
+  bool get stringify => true;
+
+  @override
+  List<Object> get props {
+    return [
+      id,
+      category,
+      subCategory,
+      brand,
+      size,
+      imageUrl,
+      url,
+      price,
+      seasons,
+      isSelected,
+    ];
+  }
 }
-// class Clothing extends Equatable {
-//   final int id;
-//   final String category;
-//   final String subCategory;
-//   final String brand;
-//   final String size;
-//   final String imageUrl;
-//   final String url;
-//   final int price;
-//   final List<String> seasons;
-
-//   bool isSelected;
-
-//   Clothing(
-//       {this.id,
-//       this.category,
-//       this.subCategory,
-//       this.brand,
-//       this.size,
-//       this.imageUrl,
-//       this.url,
-//       this.price,
-//       this.seasons,
-//       this.isSelected});
-
-//   ViewClothing get asViewClothing => ViewClothing(
-//       id: id,
-//       cardName: "$brand $subCategory",
-//       imageUrl: imageUrl,
-//       isSelected: false);
-
-//   @override
-//   bool get stringify => true;
-
-//   @override
-//   List<Object> get props {
-//     return [
-//       id,
-//       category,
-//       subCategory,
-//       brand,
-//       size,
-//       imageUrl,
-//       url,
-//       price,
-//       seasons,
-//       isSelected,
-//     ];
-//   }
-// }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartwardrobe/presentation/dispenser/dispenser.dart';
 import 'package:smartwardrobe/presentation/login/login.dart';
 import 'package:smartwardrobe/presentation/main/main.dart';
 import 'package:smartwardrobe/resources/resources.dart';
@@ -37,9 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               padding: EdgeInsets.only(top: 8.w, bottom: 16.w),
               child: SizedBox(
                 width: double.infinity,
-                child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Image.asset(ImagesPaths.bigLogo)),
+                child: Image.asset(ImagesPaths.bigLogo),
               ),
             ),
             Padding(
@@ -76,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: ElevatedButton.styleFrom(
                       primary: CustomColors.textPrimary),
                   onPressed: () {
-                    navigateToScreen(context, MainScreen());
+                    navigateToScreen(context, DispneserWindget());
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 16.w),

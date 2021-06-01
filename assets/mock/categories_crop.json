@@ -1,0 +1,65 @@
+{
+    "name": "Обувь",
+    "URL": "https://www.lamoda.ru/c/17/shoes-men/",
+    "subcategory": [
+        {
+            "name": "Кроссовки и кеды",
+            "URL": "https://www.lamoda.ru/c/2981/shoes-krossovk-kedy-muzhskie/",
+            "subcategory": [
+                {
+                    "name": "Бутсы",
+                    "URL": "https: //www.lamoda.ru/c/3936/shoes-muzhskie-butcy/",
+                    "subcategory": [
+                        {
+                            "name": "Бутсы",
+                            "URL": "https://www.lamoda.ru/c/6130/shoes-muzhskiebutsy/",
+                            "subcategory": []
+                        },
+                        {
+                            "name": "Зальные бутсы",
+                            "URL": "https://www.lamoda.ru/c/6132/shoes-muzhskiefutzalki/",
+                            "subcategory": []
+                        },
+                        {
+                            "name": "Шиповки",
+                            "URL": "https://www.lamoda.ru/c/6131/shoes-muzhskieshipovki/",
+                            "subcategory": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Кеды",
+                    "URL": "https://www.lamoda.ru/c/5972/shoes-muzhkedy/",
+                    "subcategory": [
+                        {
+                            "name": "Высокие кеды",
+                            "URL": "https://www.lamoda.ru/c/5319/default-vysokiekedymuj/",
+                            "subcategory": []
+                        },
+                        {
+                            "name": "Низкие кеды",
+                            "URL": "https://www.lamoda.ru/c/61/shoes-muzhskie-kedy",
+                            "subcategory": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Кроссовки",
+                    "URL": "https://www.lamoda.ru/c/5971/shoes-muzhkrossovki/",
+                    "subcategory": [
+                        {
+                            "name": "Высокие кроссовки",
+                            "URL": "https://www.lamoda.ru/c/5318/shoes-vysokiekrossovkimuj/",
+                            "subcategory": []
+                        },
+                        {
+                            "name": "Низкие кроссовки",
+                            "URL": "https://www.lamoda.ru/c/159/shoes-muzhskie-krossovki",
+                            "subcategory": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

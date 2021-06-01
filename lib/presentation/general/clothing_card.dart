@@ -10,10 +10,8 @@ import 'package:union/union.dart';
 class ClothingCard extends StatefulWidget {
   final void Function(int) onChangeState;
   final void Function(int) onDeleteItem;
-  final Color color;
-  final IndexedValue<ViewClothing> item;
-  ClothingCard(
-      {Key key, this.onChangeState, this.onDeleteItem, this.color, this.item})
+  final IndexedValue<Clothing> item;
+  ClothingCard({Key key, this.onChangeState, this.onDeleteItem, this.item})
       : super(key: key);
 
   @override
@@ -27,8 +25,10 @@ class _ClothingCardState extends State<ClothingCard> {
     final double widthScreen = mediaQueryData.size.width;
     return GestureDetector(
       onTap: () {
-        // Navigator.push(context,
-        //     MaterialPageRoute(builder: (context) => ItemScreen(item: item)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ItemScreen(item: widget.item.value)));
       },
       onLongPress: () {
         setState(() {
@@ -53,7 +53,6 @@ class _ClothingCardState extends State<ClothingCard> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        //color: widget.color,
                         border:
                             Border.all(color: Color(0xFFF2F2F2), width: 1.w),
                       ),
@@ -69,11 +68,7 @@ class _ClothingCardState extends State<ClothingCard> {
                         color: Colors.white70,
                         width: widthScreen / 2 - 24.w,
                         height: widthScreen / 2 - 24.w,
-                        child:
-                            //items.countWhere((el) => el.isSelected) > 1
-                            //     ? Container()
-                            //     :
-                            Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
@@ -106,13 +101,16 @@ class _ClothingCardState extends State<ClothingCard> {
                             ),
                           ],
                         ),
-                      )
+                      ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.w),
                   child: Text(
-                    widget.item.value.cardName.replaceAll("", "\u{200B}"),
+                    (widget.item.value.brand.name +
+                            ' ' +
+                            widget.item.value.subCategory.name)
+                        .replaceAll("", "\u{200B}"),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(

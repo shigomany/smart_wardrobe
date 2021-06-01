@@ -7,6 +7,7 @@ abstract class ClothingState extends Equatable {
   List<Object> get props => [];
 }
 
+//Clothing
 class ClothingInitial extends ClothingState {}
 
 class ClothingLoading extends ClothingState {}
@@ -20,11 +21,16 @@ class ClothingLoaded extends ClothingState {
   List<Object> get props => [clothing];
 }
 
-class ClothesListLoaded extends ClothingState {
-  final List<Clothing> clothing;
+//ClothesList
+class ClothesListInitial extends ClothingState {}
 
-  ClothesListLoaded({@required this.clothing});
+class ClothesListLoading extends ClothingState {}
+
+class ClothesListLoaded extends ClothingState {
+  final List<Clothing> clothingList;
+
+  ClothesListLoaded({@required this.clothingList});
 
   @override
-  List<Object> get props => [clothing];
+  List<Object> get props => [clothingList];
 }

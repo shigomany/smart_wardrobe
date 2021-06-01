@@ -2,9 +2,9 @@ part of 'models.dart';
 
 class ApiClothing extends Equatable {
   final int id;
-  final String category;
-  final String subCategory;
-  final String brand;
+  final ApiCategory category;
+  final ApiCategory subCategory;
+  final ApiBrand brand;
   final String size;
   final String imageUrl;
   final String url;
@@ -25,17 +25,23 @@ class ApiClothing extends Equatable {
 
   factory ApiClothing.fromApi(Map<String, dynamic> map) {
     if (map == null) return null;
+    print(map['subCategory']);
+    //List<ApiSeason> seasons =
+    //    List<ApiSeason>.from(map['seasons'].map((e) => ApiSeason.fromApi(e)));
 
+    //TODO:маппинг брендов
+    //TODO: разобраться - должны ли быть Seasons, а не ApiSeasons
     return ApiClothing(
       id: map['id'],
-      category: map['category'],
-      subCategory: map['subCategory'],
-      brand: map['brand'],
+      category: ApiCategory.fromApi(map['category']),
+      subCategory: ApiCategory.fromApi(map['subCategory']),
+      brand: ApiBrand.fromApi(map['brand']),
       size: map['size'],
       imageUrl: map['image_url'],
       url: map['url'],
       price: map['price'],
-      seasons: List<String>.from(map['seasons'].map((x) => x)),
+      seasons: List<String>.from(map["seasons"].map((x) => x)),
+      //seasons: seasons.map((e) => e.toEntity()).cast<Season>().toList(),
     );
   }
 
@@ -53,9 +59,9 @@ class ApiClothing extends Equatable {
 
   Clothing toEntity() => Clothing(
       id: id,
-      category: category,
-      subCategory: subCategory,
-      brand: brand,
+      category: category.toEntity(),
+      subCategory: subCategory.toEntity(),
+      brand: brand.toEntity(),
       size: size,
       imageUrl: imageUrl,
       url: url,

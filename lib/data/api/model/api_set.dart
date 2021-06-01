@@ -4,7 +4,7 @@ class ApiSet extends Equatable {
   final int id;
   final String name;
   final String description;
-  final String imgUrl;
+  final String imageUrl;
   final int minTemp;
   final int maxTemp;
   final List<Clothing> clothes;
@@ -15,7 +15,7 @@ class ApiSet extends Equatable {
     this.id,
     this.name,
     this.description,
-    this.imgUrl,
+    this.imageUrl,
     this.minTemp,
     this.maxTemp,
     this.clothes,
@@ -29,7 +29,7 @@ class ApiSet extends Equatable {
       id,
       name,
       description,
-      imgUrl,
+      imageUrl,
       minTemp,
       maxTemp,
       clothes,
@@ -59,12 +59,10 @@ class ApiSet extends Equatable {
       id: map['id'],
       name: map['name'],
       description: map['description'],
-      imgUrl: map['imgUrl'],
+      imageUrl: map['imgUrl'],
       minTemp: int.tryParse(map['minTemp']) ?? 0,
       maxTemp: int.tryParse(map['maxTemp']) ?? 0,
       clothes: clothes.map((e) => e.toEntity()).cast<Clothing>().toList(),
-      // cases: List<Case>.from(
-      //     map['cases'].map((id, name) => Case(id: id, name: name))),
       cases: cases.map((e) => e.toEntity()).cast<Case>().toList(),
       seasons: seasons.map((e) => e.toEntity()).cast<Season>().toList(),
     );
@@ -74,7 +72,7 @@ class ApiSet extends Equatable {
       id: id,
       name: name,
       description: description,
-      imgUrl: imgUrl,
+      imageUrl: imageUrl,
       minTemp: minTemp,
       maxTemp: maxTemp,
       clothes: clothes,

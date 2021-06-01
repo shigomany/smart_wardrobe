@@ -18,9 +18,17 @@ class ClothingRepositoryImpl extends ClothingRepository {
   @override
   Future<List<Clothing>> getAllClothing() async {
     final result = await clothingService.getAllClothing();
-
     final list = result.map((e) => e.toEntity()).cast<Clothing>().toList();
 
     return list;
+  }
+
+  @override
+  Future<Clothing> getClothingById(int id) async {
+    final result = await clothingService.getClothingById(id);
+
+    final item = result.toEntity();
+
+    return item;
   }
 }
