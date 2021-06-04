@@ -26,14 +26,14 @@ import 'package:smartwardrobe/util/themes/default.dart';
 
 class Application extends StatelessWidget {
   const Application({Key key}) : super(key: key);
-  static bool isDISetuped = false;
+  // static bool isDISetuped = false;
 
   @override
   Widget build(BuildContext context) {
-    if (!isDISetuped) {
-      setupInitial();
-      isDISetuped = true;
-    }
+    // if (!isDISetuped) {
+    //   setupInitial();
+    //   isDISetuped = true;
+    // }
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(

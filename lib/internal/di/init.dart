@@ -51,13 +51,18 @@ void sources() {
 }
 
 void repositories() {
-  GetIt.I.registerFactory<WeatherRepository>(() => WeatherRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<WeatherRepository>(
+      () => WeatherRepositoryImpl(GetIt.I()));
   GetIt.I.registerFactory<AuthRepository>(() => AuthDataRepository(GetIt.I()));
-  GetIt.I.registerFactory<ClothingRepository>(() => ClothingRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<ClothingRepository>(
+      () => ClothingRepositoryImpl(GetIt.I()));
   GetIt.I.registerFactory<SetRepository>(() => SetRepositoryImpl(GetIt.I()));
-  GetIt.I.registerFactory<CategoryRepository>(() => CategoryRepostitoryImpl(GetIt.I()));
-  GetIt.I.registerFactory<BrandRepository>(() => BrandRepositoryImpl(GetIt.I()));
-  GetIt.I.registerFactory<ImageFileRepository>(() => ImageFileRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<CategoryRepository>(
+      () => CategoryRepostitoryImpl(GetIt.I()));
+  GetIt.I
+      .registerFactory<BrandRepository>(() => BrandRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<ImageFileRepository>(
+      () => ImageFileRepositoryImpl(GetIt.I()));
 }
 
 void usecases() {
@@ -91,7 +96,7 @@ void setupInitial() {
   bloc();
 
   GetIt.I.registerSingleton(GlobalDI());
-  GetIt.I.registerSingletonAsync(HiveDI.initDI);
+  GetIt.I.registerSingletonAsync(() => HiveDI.initDI());
 }
 
 void setupAfterRender() {}

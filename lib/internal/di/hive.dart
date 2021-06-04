@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smartwardrobe/domain/model/delete.dart';
@@ -6,15 +5,17 @@ import 'package:smartwardrobe/domain/model/delete.dart';
 class HiveDI {
 // for sample
 
-  static Future<void> initDI() async {
+  static Future<HiveDI> initDI() async {
     await Hive.initFlutter();
     _initAdapters();
+
+    return HiveDI();
   }
 
   static void _initAdapters() {
     // Где стоит @HiveType(typeId: <№>) нужно зарегать адаптеры. Имена адатеров через быстрое действие и
     // рефакторинг можно подключать <ClassName>Adapter
-    // Hive.registerAdapter(PersonAdapter());
+    Hive.registerAdapter(PersonAdapter());
   }
 
   Future<Box<T>> getOrOpen<T extends Object>(String name) async {
