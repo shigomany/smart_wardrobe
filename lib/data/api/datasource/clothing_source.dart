@@ -7,6 +7,7 @@ import 'package:smartwardrobe/data/api/model/models.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/resources/resources.dart';
 import 'package:smartwardrobe/util/constants.dart';
+import 'package:union/union.dart';
 
 class ClothingSource {
   Dio _dio;
@@ -81,5 +82,31 @@ class ClothingSource {
 
     // return response.data;
     //
+  }
+
+  Future<Union2<ApiClothing, List<ApiValidator>>> getClothingFromLamoda(
+      String id) async {
+    //TODO:когда будет бэк раскоментить
+    //final requestData = {'id': id};
+    //final response = await _dio.post('/api/v1/clothing/fetch_from_lamoda',
+    //    data: jsonEncode(requestData));
+    //TODO:когда будет бэк убрать
+    final response = await json
+        .decode(await rootBundle.loadString(MockPaths.clothing_from_lamoda));
+
+    return ApiClothing.fromApi(response as Map<String, dynamic>).asFirst();
+
+    // if (response.statusCode == 201) {
+    //   return ApiClothing.fromApi(
+    //           response.data['clothing'] as Map<String, dynamic>)
+    //       .asFirst();
+    // } else if (response.statusCode == 422) {
+    //   return (response.data as List<dynamic>)
+    //       ?.map((e) => ApiValidator.fromApi(e as Map<String, dynamic>))
+    //       ?.toList()
+    //       ?.asSecond();
+    // } else {
+    //   return null;
+    // }
   }
 }

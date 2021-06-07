@@ -4,11 +4,13 @@ class ClothingBloc extends Bloc<ClothingEvent, ClothingState> {
   final GetAllClothing getAllClothingCase;
   final PostNewClothing postNewClothingCase;
   final GetClothingById getClothingById;
+  final GetClothingFromLamoda getClothingFromLamoda;
 
   ClothingBloc({
     this.getAllClothingCase,
     this.postNewClothingCase,
     this.getClothingById,
+    this.getClothingFromLamoda,
   }) : super(ClothingInitial());
 
   @override
@@ -31,6 +33,14 @@ class ClothingBloc extends Bloc<ClothingEvent, ClothingState> {
       final result = await getClothingById(event.id);
 
       yield (ClothingLoaded(clothing: result));
+    } else if (event is FetchClothingFromLamoda) {
+      final result = await getClothingFromLamoda(event.id);
+
+      if (result.value is Clothing) {
+        yield (ClothingFromLamodaLoaded(clothing: result.value));
+      } else {
+        yield ClothingError(errors: result.value as List<Validator>);
+      }
     }
   }
 }

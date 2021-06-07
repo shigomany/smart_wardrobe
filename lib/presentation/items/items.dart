@@ -123,7 +123,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
                               backgroundColor: Colors.blue,
                             ),
                           );
-                        } else if (state is ClothesListLoaded) {
+                        } else if (state is ClothesListLoaded ||
+                            items.length > 1) {
                           return Wrap(
                             children: [
                               // for (var i in enumerate(
@@ -155,7 +156,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
         floatingActionButton: FloatingActionButton(
           elevation: 2,
           onPressed: () {
-            YYBottomSheetDialog(context);
+            bottomAddMenu(context);
           },
           child: Icon(Icons.add,
               color: Color.fromRGBO(253, 253, 253, 1), size: 36.sp),

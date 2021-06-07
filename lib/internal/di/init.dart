@@ -25,6 +25,7 @@ import 'package:smartwardrobe/domain/usecase/get_all_clothing.dart';
 import 'package:smartwardrobe/domain/usecase/get_brand_list.dart';
 import 'package:smartwardrobe/domain/usecase/get_categories_by_gender.dart';
 import 'package:smartwardrobe/domain/usecase/get_clothing_by_id.dart';
+import 'package:smartwardrobe/domain/usecase/get_clothing_from_lamoda.dart';
 import 'package:smartwardrobe/domain/usecase/get_related_sets.dart';
 import 'package:smartwardrobe/domain/usecase/post_new_clothing.dart';
 import 'package:smartwardrobe/domain/usecase/get_weather.dart';
@@ -68,6 +69,7 @@ void usecases() {
   sl.registerFactory(() => GetCategoriesByGender(sl()));
   sl.registerFactory(() => GetBrandList(sl()));
   sl.registerFactory(() => ClearBackground(sl()));
+  sl.registerFactory(() => GetClothingFromLamoda(sl()));
 }
 
 void bloc() {
@@ -76,7 +78,8 @@ void bloc() {
   sl.registerFactory(() => ClothingBloc(
       getAllClothingCase: sl(),
       postNewClothingCase: sl(),
-      getClothingById: sl()));
+      getClothingById: sl(),
+      getClothingFromLamoda: sl()));
   sl.registerFactory(() => SetBloc(getRelatedSetsCase: sl()));
   sl.registerFactory(() => CategoryBloc(getCategoriesByGender: sl()));
   sl.registerFactory(() => BrandBloc(getBrandList: sl()));

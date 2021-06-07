@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:smartwardrobe/presentation/general/editable_expansion_tile.dart';
-import 'package:smartwardrobe/presentation/item_from_camera/item_from_camera.dart';
+import 'package:smartwardrobe/presentation/new_item/item_from_camera.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class ListMenuSlider extends StatefulWidget {

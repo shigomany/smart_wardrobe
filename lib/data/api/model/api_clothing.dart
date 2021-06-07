@@ -25,7 +25,6 @@ class ApiClothing extends Equatable {
 
   factory ApiClothing.fromApi(Map<String, dynamic> map) {
     if (map == null) return null;
-    print(map['subCategory']);
     //List<ApiSeason> seasons =
     //    List<ApiSeason>.from(map['seasons'].map((e) => ApiSeason.fromApi(e)));
 

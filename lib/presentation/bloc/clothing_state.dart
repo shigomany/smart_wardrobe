@@ -7,6 +7,25 @@ abstract class ClothingState extends Equatable {
   List<Object> get props => [];
 }
 
+class ClothingError extends ClothingState {
+  final List<Validator> errors;
+  ClothingError({@required this.errors});
+
+  @override
+  List<Object> get props => [errors];
+}
+
+//ClothingFromLamoda
+
+class ClothingFromLamodaLoaded extends ClothingState {
+  final Clothing clothing;
+  ClothingFromLamodaLoaded({
+    @required this.clothing,
+  });
+  @override
+  List<Object> get props => [clothing];
+}
+
 //Clothing
 class ClothingInitial extends ClothingState {}
 

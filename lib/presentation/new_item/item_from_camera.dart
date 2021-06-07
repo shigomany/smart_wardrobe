@@ -206,13 +206,17 @@ class _ItemFromCameraState extends State<ItemFromCamera> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: imageFile == null
-                              ? CustomColors.lightGrey
-                              : Colors.white,
-                          shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 1, color: Color(0xFFf2f2f2)),
-                              borderRadius: BorderRadius.circular(5.w))),
+                        primary: imageFile == null
+                            ? CustomColors.lightGrey
+                            : Colors.white,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            width: 1,
+                            color: Color(0xFFf2f2f2),
+                          ),
+                          borderRadius: BorderRadius.circular(5.w),
+                        ),
+                      ),
                       onPressed: () {
                         if (imageFile == null) {
                           setState(
