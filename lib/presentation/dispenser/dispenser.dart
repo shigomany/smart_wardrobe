@@ -58,9 +58,10 @@ class _DispneserWindgetState extends State<DispneserWindget> {
     // Test
     final personBox = await hiveDi.getOrOpen<Person>(Person.boxName);
     personBox.add(Person(name: 'Керилл', age: 21));
-    await Future.delayed(const Duration(milliseconds: 500));
-    final newPersonBox = await hiveDi.getOrOpen<Person>(Person.boxName);
-    print(newPersonBox.getAt(0));
+    // await Future.delayed(const Duration(milliseconds: 500));
+    final ss = personBox.values.where((element) => element.name == 'Керилл').toList();
+    final chel = personBox.getAt(0);
+    print(chel.key);
   }
 
   @override
