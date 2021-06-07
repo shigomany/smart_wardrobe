@@ -15,7 +15,7 @@
 				"$dart-build_runner"
 			],
 			"group": "build",
-			"label": "flutter: flutter pub run build_runner build"
+			"label": "Build runner"
 		}
 	]
 }

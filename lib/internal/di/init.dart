@@ -30,6 +30,7 @@ import 'package:smartwardrobe/domain/usecase/get_related_sets.dart';
 import 'package:smartwardrobe/domain/usecase/post_new_clothing.dart';
 import 'package:smartwardrobe/domain/usecase/get_weather.dart';
 import 'package:smartwardrobe/internal/di/global.dart';
+import 'package:smartwardrobe/internal/di/hive.dart';
 import 'package:smartwardrobe/presentation/bloc/auth.dart';
 import 'package:smartwardrobe/presentation/bloc/brand.dart';
 import 'package:smartwardrobe/presentation/bloc/category.dart';
@@ -38,26 +39,31 @@ import 'package:smartwardrobe/presentation/bloc/image_file.dart';
 import 'package:smartwardrobe/presentation/bloc/set.dart';
 import 'package:smartwardrobe/presentation/bloc/weather.dart';
 
-final sl = GetIt.instance;
+final sl = GetIt.I;
 
 void sources() {
-  sl.registerFactory(() => WeatherSource());
-  sl.registerFactory(() => AuthSource());
-  sl.registerFactory(() => ClothingSource());
-  sl.registerFactory(() => SetSource());
-  sl.registerFactory(() => CategorySource());
-  sl.registerFactory(() => BrandSource());
-  sl.registerFactory(() => ImageFileSource());
+  GetIt.I.registerFactory(() => WeatherSource());
+  GetIt.I.registerFactory(() => AuthSource());
+  GetIt.I.registerFactory(() => ClothingSource());
+  GetIt.I.registerFactory(() => SetSource());
+  GetIt.I.registerFactory(() => CategorySource());
+  GetIt.I.registerFactory(() => BrandSource());
+  GetIt.I.registerFactory(() => ImageFileSource());
 }
 
 void repositories() {
-  sl.registerFactory<WeatherRepository>(() => WeatherRepositoryImpl(sl()));
-  sl.registerFactory<AuthRepository>(() => AuthDataRepository(sl()));
-  sl.registerFactory<ClothingRepository>(() => ClothingRepositoryImpl(sl()));
-  sl.registerFactory<SetRepository>(() => SetRepositoryImpl(sl()));
-  sl.registerFactory<CategoryRepository>(() => CategoryRepostitoryImpl(sl()));
-  sl.registerFactory<BrandRepository>(() => BrandRepositoryImpl(sl()));
-  sl.registerFactory<ImageFileRepository>(() => ImageFileRepositoryImpl(sl()));
+  GetIt.I.registerFactory<WeatherRepository>(
+      () => WeatherRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<AuthRepository>(() => AuthDataRepository(GetIt.I()));
+  GetIt.I.registerFactory<ClothingRepository>(
+      () => ClothingRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<SetRepository>(() => SetRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<CategoryRepository>(
+      () => CategoryRepostitoryImpl(GetIt.I()));
+  GetIt.I
+      .registerFactory<BrandRepository>(() => BrandRepositoryImpl(GetIt.I()));
+  GetIt.I.registerFactory<ImageFileRepository>(
+      () => ImageFileRepositoryImpl(GetIt.I()));
 }
 
 void usecases() {
@@ -93,6 +99,7 @@ void setupInitial() {
   bloc();
 
   GetIt.I.registerSingleton(GlobalDI());
+  GetIt.I.registerSingletonAsync(() => HiveDI.initDI());
 }
 
 void setupAfterRender() {}

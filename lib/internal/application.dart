@@ -28,38 +28,38 @@ import 'package:smartwardrobe/util/themes/default.dart';
 
 class Application extends StatelessWidget {
   const Application({Key key}) : super(key: key);
-  static bool isDISetuped = false;
+  // static bool isDISetuped = false;
 
   @override
   Widget build(BuildContext context) {
-    if (!isDISetuped) {
-      setupInitial();
-      isDISetuped = true;
-    }
+    // if (!isDISetuped) {
+    //   setupInitial();
+    //   isDISetuped = true;
+    // }
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) => sl<AuthBloc>(),
+          create: (context) => GetIt.I<AuthBloc>(),
         ),
         BlocProvider<WeatherBloc>(
           lazy: false,
-          create: (context) => sl<WeatherBloc>(),
+          create: (context) => GetIt.I<WeatherBloc>(),
         ),
         BlocProvider<ClothingBloc>(
           //lazy: false,
-          create: (context) => sl<ClothingBloc>(),
+          create: (context) => GetIt.I<ClothingBloc>(),
         ),
         BlocProvider<SetBloc>(
-          create: (context) => sl<SetBloc>(),
+          create: (context) => GetIt.I<SetBloc>(),
         ),
         BlocProvider<CategoryBloc>(
-          create: (context) => sl<CategoryBloc>(),
+          create: (context) => GetIt.I<CategoryBloc>(),
         ),
         BlocProvider<BrandBloc>(
-          create: (context) => sl<BrandBloc>(),
+          create: (context) => GetIt.I<BrandBloc>(),
         ),
         BlocProvider<ImageFileBloc>(
-          create: (context) => sl<ImageFileBloc>(),
+          create: (context) => GetIt.I<ImageFileBloc>(),
         )
       ],
       child: ScreenUtilInit(
