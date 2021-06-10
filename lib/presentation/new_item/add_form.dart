@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/presentation/bloc/brand.dart';
 import 'package:smartwardrobe/presentation/bloc/category.dart';
+import 'package:smartwardrobe/presentation/bloc/clothing.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/custom_textfield.dart';
 import 'package:smartwardrobe/presentation/general/logo_bar.dart';
@@ -38,6 +40,7 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
   final List<String> seasons = ['зима', 'весна', 'лето', 'осень'];
 
   ClothingCategory _selectedCategory;
+  ClothingCategory _selectedSubCategory;
   Brand _selectedBrand;
   final _categoryController = TextEditingController();
   final _brandController = TextEditingController();
@@ -47,43 +50,67 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
   final formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    BlocProvider.of<CategoryBloc>(context)
+      ..add(FetchCategoriesByGender(gender: 'male'));
+    BlocProvider.of<BrandBloc>(context)..add(FetchBrandList());
+
+    if (widget.clothing != null) {
+      _categoryController.text = widget.clothing.subCategory != null
+          ? widget.clothing.subCategory.name
+          : '';
+      _brandController.text =
+          widget.clothing.brand != null ? widget.clothing.brand.name : '';
+      _urlController.text = widget.clothing.url ?? '';
+      _priceController.text = widget.clothing.price.toString() ?? '';
+      _selectedBrand = widget.clothing.brand ?? null;
+      _selectedSubCategory = widget.clothing.subCategory ?? null;
+      _selectedCategory = widget.clothing.category ?? null;
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: CustomAppBar(
-          child: LogoBar(
-            title: "Добавление вещи",
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CategoryBloc, CategoryState>(listener: (context, state) {
+          if (state is CategoryLoaded) {
+            categories = state.categories;
+          }
+        }),
+        BlocListener<BrandBloc, BrandState>(listener: (context, state) {
+          if (state is BrandLoaded) {
+            brands = state.list;
+          }
+        }),
+      ],
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: CustomAppBar(
+            child: LogoBar(
+              title: "Добавление вещи",
+            ),
           ),
-        ),
-        body: MultiBlocListener(
-          listeners: [
-            BlocListener<CategoryBloc, CategoryState>(
-                listener: (context, state) {
-              if (state is CategoryLoaded) {
-                categories = state.categories;
-              }
-            }),
-            BlocListener<BrandBloc, BrandState>(listener: (context, state) {
-              if (state is BrandLoaded) {
-                brands = state.list;
-              }
-            })
-          ],
-          child: BlocBuilder<BrandBloc, BrandState>(
+          body: BlocBuilder<BrandBloc, BrandState>(
             builder: (context, state) {
               if (state is BrandLoaded) {
-                return Column(
+                return ListView(
+                  scrollDirection: Axis.vertical,
                   children: [
-                    DisplayImage(imageFile: widget.imageFile),
+                    DisplayImage(
+                      imageFile: widget.imageFile,
+                    ),
                     _displayForm()
                   ],
                 );
               } else {
                 return Center(
-                    child: CircularProgressIndicator(
-                  backgroundColor: Colors.blue,
-                ));
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.blue,
+                  ),
+                );
               }
             },
           ),
@@ -122,22 +149,21 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
                 return suggestionsBox;
               },
               onSuggestionSelected: (suggestion) {
-                _selectedCategory = suggestion;
+                _selectedSubCategory = suggestion;
                 _categoryController.text = suggestion.name;
               },
+              // ignore: missing_return
               validator: (value) {
                 if (value != null && value.isEmpty) {
                   return 'Укажите категорию';
-                } else if (_selectedCategory == null ||
-                    _selectedCategory.name != _categoryController.text) {
+                } else if (_selectedSubCategory == null ||
+                    _selectedSubCategory.name != _categoryController.text) {
                   return 'Выберите категорию из списка';
-                } else {
-                  return 'Укажите категорию';
                 }
               },
-              //TODO : Сохранение формы
-              //Нужен ли этот стринг
-              //onSaved: (value) => this._selectedCategory = value,
+              onSaved: (value) {
+                _selectedSubCategory = _getCategories(value).first;
+              },
               noItemsFoundBuilder: (BuildContext context) {
                 return Center(child: Text('Категорий по запросу не найдено'));
               },
@@ -170,19 +196,16 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
                 _selectedBrand = suggestion;
                 _brandController.text = suggestion.name;
               },
+              // ignore: missing_return
               validator: (value) {
                 if (value != null && value.isEmpty) {
                   return 'Укажите бренд';
                 } else if (_selectedBrand == null ||
                     _selectedBrand.name != _brandController.text) {
                   return 'Выберите бренд из списка';
-                } else {
-                  return 'Укажите бренд';
                 }
               },
-              //TODO : Сохранение формы
-              //Нужен ли этот стринг
-              //onSaved: (value) => this._selectedBrand = value,
+              onSaved: (value) => this._selectedBrand = _getBrand(value).first,
               noItemsFoundBuilder: (BuildContext context) {
                 return Center(child: Text('Брендов по запросу не найдено'));
               },
@@ -206,6 +229,13 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
                 labelText: 'Цена',
                 controller: _priceController,
                 keyboardType: TextInputType.number,
+                textInputFormatter: [FilteringTextInputFormatter.digitsOnly],
+                validator: (String value) {
+                  if (int.tryParse(value) == null) {
+                    return 'Укажите цену в виде целого числа';
+                  }
+                  return null;
+                },
               )),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.w),
@@ -227,16 +257,19 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(width: 1, color: Color(0xFFf2f2f2)),
-                          borderRadius: BorderRadius.circular(5.w))),
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        width: 1,
+                        color: Color(0xFFf2f2f2),
+                      ),
+                      borderRadius: BorderRadius.circular(5.w),
+                    ),
+                  ),
                   onPressed: () {
                     if (formKey.currentState.validate()) {
-                      print(_selectedBrand);
-                      print(_selectedCategory);
-                      print(_selectedSeasons);
-                      //_postNewClothing();
+                      formKey.currentState.save();
+                      _postNewClothing();
                     } else {
                       print('error');
                     }
@@ -258,6 +291,27 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
         ],
       ),
     );
+  }
+
+  void _postNewClothing() {
+    Clothing formClothing = new Clothing(
+        category: _selectedSubCategory,
+        subCategory: _selectedCategory,
+        brand: _selectedBrand,
+        size: _sizeController.text ?? '',
+        imageUrl: widget.imageFile.path,
+        url: _urlController.text ?? '',
+        price: int.tryParse(_priceController.text) ?? 0,
+        seasons: _selectedSeasons);
+    print(formClothing.category);
+    print(formClothing.subCategory);
+    print(formClothing.brand);
+    print(formClothing.size);
+    print(formClothing.imageUrl);
+    print(formClothing.url);
+    print(formClothing.price);
+    print(formClothing.seasons);
+    //BlocProvider.of<ClothingBloc>(context)..add(CreateNewClothing());
   }
 
   List<ClothingCategory> _getCategories(String pattern) {
@@ -295,16 +349,19 @@ class DisplayImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: ScreenUtil().screenWidth,
-      height: ScreenUtil().screenWidth,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: CustomColors.lightGrey, width: 4.w),
-      ),
-      child: Image.file(
-        imageFile,
-        fit: BoxFit.fitHeight,
+    return Padding(
+      padding: EdgeInsets.all(8.w),
+      child: Container(
+        width: ScreenUtil().screenWidth,
+        height: ScreenUtil().screenWidth,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: CustomColors.lightGrey, width: 4.w),
+        ),
+        child: Image.file(
+          imageFile,
+          fit: BoxFit.scaleDown,
+        ),
       ),
     );
   }

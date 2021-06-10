@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smartwardrobe/domain/model/models.dart';
 
 class InheritedDataProvider extends InheritedWidget {
-  final String data;
+  final dynamic data;
   InheritedDataProvider({
     Widget child,
     this.data,

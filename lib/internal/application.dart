@@ -14,6 +14,7 @@ import 'package:smartwardrobe/presentation/bloc/set.dart';
 import 'package:smartwardrobe/presentation/bloc/weather.dart';
 import 'package:smartwardrobe/presentation/dispenser/dispenser.dart';
 import 'package:smartwardrobe/presentation/edit_item/edit_item.dart';
+import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
 import 'package:smartwardrobe/presentation/home.dart';
 import 'package:smartwardrobe/presentation/item/item.dart';
 import 'package:smartwardrobe/presentation/new_item/add_form.dart';
@@ -82,6 +83,9 @@ class Application extends StatelessWidget {
             ItemFromCamera.routeName: (_) => ItemFromCamera(),
             ItemFromLamodaScreen.routeName: (_) => ItemFromLamodaScreen(),
             AddClothingFormScreen.routeName: (_) => AddClothingFormScreen(),
+            EditPhotoScreen.routeName: (_) => EditPhotoScreen(
+                  isClothingProvided: false,
+                ),
           },
         ),
       ),

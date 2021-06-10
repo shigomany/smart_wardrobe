@@ -3,9 +3,12 @@ import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
 import 'package:smartwardrobe/presentation/new_item/item_from_camera.dart';
+import 'package:smartwardrobe/presentation/new_item/item_from_device.dart';
 import 'package:smartwardrobe/presentation/new_item/item_from_lamoda.dart';
 import 'package:smartwardrobe/resources/resources.dart';
+import 'package:smartwardrobe/util/constants.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 Future navigateToScreen(context, routeLink) async {
@@ -47,7 +50,8 @@ YYDialog bottomAddMenu(BuildContext context) {
               color: Colors.white,
               child: InkWell(
                 onTap: () {
-                  navigateToScreen(context, ItemFromCamera());
+                  navigateToScreen(context,
+                      ItemFromDeviceScreen(imageType: ImageType.TYPE_CAMERA));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -79,7 +83,8 @@ YYDialog bottomAddMenu(BuildContext context) {
               color: Colors.white,
               child: InkWell(
                 onTap: () {
-                  print("Выбрать фото из галереи");
+                  navigateToScreen(context,
+                      ItemFromDeviceScreen(imageType: ImageType.TYPE_GALLERY));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -93,10 +98,12 @@ YYDialog bottomAddMenu(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Выбрать фото из галереи',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                            )),
+                        Text(
+                          'Выбрать фото из галереи',
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                          ),
+                        ),
                         Icon(
                           MaterialIcons.keyboard_arrow_right,
                           size: 32.sp,

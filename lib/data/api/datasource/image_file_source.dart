@@ -27,7 +27,7 @@ class ImageFileSource {
 
   ImageFileSource() {
     _dio = Dio(BaseOptions(
-      baseUrl: 'http://192.168.0.104:5000',
+      baseUrl: 'http://192.168.1.32:5000',
       sendTimeout: 5000, // 5s
       contentType: 'application/json; charset=UTF-8',
       followRedirects: false,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -7,13 +8,15 @@ class CustomTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final Function onChanged;
   final String Function(String) validator;
+  final List<TextInputFormatter> textInputFormatter;
 
   CustomTextField(
       {@required this.labelText,
       this.controller,
       this.keyboardType = TextInputType.text,
       this.onChanged,
-      this.validator});
+      this.validator,
+      this.textInputFormatter});
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -34,6 +37,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: widget.controller,
       keyboardType: widget.keyboardType,
       validator: widget.validator,
+      inputFormatters: <TextInputFormatter>[],
       onChanged: (value) {
         if (widget.onChanged != null) {
           widget.onChanged(value);

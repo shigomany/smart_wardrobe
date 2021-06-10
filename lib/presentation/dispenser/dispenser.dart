@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:smartwardrobe/domain/model/clothing_image.dart';
-import 'package:smartwardrobe/domain/model/delete.dart';
+
 import 'package:smartwardrobe/internal/di/hive.dart';
 import 'package:smartwardrobe/internal/di/init.dart';
 import 'package:smartwardrobe/presentation/items/items.dart';
@@ -56,12 +56,13 @@ class _DispneserWindgetState extends State<DispneserWindget> {
     await GetIt.I.isReady<HiveDI>();
     final hiveDi = GetIt.I<HiveDI>();
     // Test
-    final personBox = await hiveDi.getOrOpen<Person>(Person.boxName);
-    personBox.add(Person(name: 'Керилл', age: 21));
+    //final personBox = await hiveDi.getOrOpen<Person>(Person.boxName);
+    //personBox.add(Person(name: 'Керилл', age: 21));
     // await Future.delayed(const Duration(milliseconds: 500));
-    final ss = personBox.values.where((element) => element.name == 'Керилл').toList();
-    final chel = personBox.getAt(0);
-    print(chel.key);
+    //final ss =
+    //    personBox.values.where((element) => element.name == 'Керилл').toList();
+    //final chel = personBox.getAt(0);
+    //print(chel.key);
   }
 
   @override
