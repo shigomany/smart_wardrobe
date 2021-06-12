@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/presentation/item/item.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:union/union.dart';
 
 class ClothingCard extends StatefulWidget {
   final void Function(int) onChangeState;

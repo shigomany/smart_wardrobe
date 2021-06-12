@@ -1,19 +1,15 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/logo_bar.dart';
 import 'package:smartwardrobe/util/common_methods.dart';
 import 'package:smartwardrobe/util/constants.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
-import 'package:path/path.dart' as p;
 
 class ItemFromDeviceScreen extends StatefulWidget {
   final ImageType imageType;

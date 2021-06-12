@@ -13,8 +13,6 @@ import 'package:smartwardrobe/presentation/general/clothing_card.dart';
 import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/logo_bar.dart';
 import 'package:smartwardrobe/presentation/general/bottom_dialog.dart';
-import 'package:smartwardrobe/presentation/item/item.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class ItemsScreen extends StatefulWidget {
@@ -127,8 +125,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
                             items.length > 1) {
                           return Wrap(
                             children: [
-                              // for (var i in enumerate(
-                              //     items.map((e) => e.asViewClothing).toList()))
                               for (var i in enumerate(items))
                                 ClothingCard(
                                     onChangeState: _onChangeState,
