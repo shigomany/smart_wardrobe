@@ -1,8 +1,9 @@
 part of 'models.dart';
 
 @HiveType(typeId: 1)
-class Set extends HiveObject implements Equatable {
-  static String get boxName => 'Set';
+class Set extends HiveObject implements Equatable, BoxName {
+  @override
+  String get boxName => 'Set';
 
   @HiveField(0)
   final int id;
