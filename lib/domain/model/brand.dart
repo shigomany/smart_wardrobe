@@ -1,7 +1,8 @@
 part of 'models.dart';
 
 @HiveType(typeId: 3)
-class Brand extends HiveObject implements Equatable {
+class Brand extends HiveObject implements Equatable, BoxName {
+
   @HiveField(0)
   final String name;
   @HiveField(1)
@@ -17,4 +18,7 @@ class Brand extends HiveObject implements Equatable {
 
   @override
   List<Object> get props => [url, name];
+
+  @override
+  String get boxName => 'Brand';
 }

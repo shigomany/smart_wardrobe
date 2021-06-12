@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:smartwardrobe/domain/interfaces/box_name.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
 
 class HiveDI {
@@ -33,5 +34,35 @@ class HiveDI {
       return Hive.lazyBox<T>(name);
     }
     return await Hive.openLazyBox<T>(name);
+  }
+
+  Future<List<T>> getAll<T>() async {
+    if (T is BoxName) {
+      final boxName = (T as BoxName).boxName;
+      final box = await getOrOpen(boxName);
+      return box.values.toList();
+    }
+    
+    return null;
+  }
+
+  Future<List<T>> getWhere<T>(bool Function(T) selector) async {
+    if (T is BoxName) {
+      final boxName = (T as BoxName).boxName;
+      final box = await getOrOpen(boxName);
+      return box.values.where(selector).toList();
+    }
+    
+    return null;
+  }
+
+  Future<T> getSingleWhere<T>(bool Function(T) selector) async {
+    if (T is BoxName) {
+      final boxName = (T as BoxName).boxName;
+      final box = await getOrOpen(boxName);
+      return box.values.singleWhere(selector);
+    }
+    
+    return null;
   }
 }
