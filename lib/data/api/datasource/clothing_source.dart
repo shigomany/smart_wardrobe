@@ -1,11 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
+import 'package:get_it/get_it.dart';
 import 'package:smartwardrobe/data/api/model/models.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
+import 'package:smartwardrobe/internal/di/hive.dart';
 import 'package:smartwardrobe/resources/resources.dart';
+import 'package:smartwardrobe/util/common_methods.dart';
 import 'package:smartwardrobe/util/constants.dart';
 import 'package:union/union.dart';
 
@@ -41,19 +45,29 @@ class ClothingSource {
   //   }
   // }
 
-  Future<List<ApiClothing>> getAllClothing() async {
-    final response =
-        await json.decode(await rootBundle.loadString(MockPaths.clothing));
+  Future<Union2<List<ApiClothing>, List<Clothing>>> getAllClothing() async {
+    bool connection = await DataConnectionChecker().hasConnection;
 
-    if (response is List<dynamic>) {
-      List<ApiClothing> clothes =
-          response.map((e) => ApiClothing.fromApi(e)).toList();
+//     if (connection) {
+//           final response =
+//           await json.decode(await rootBundle.loadString(MockPaths.clothing));
+//           List<ApiClothing> clothes;
+//           if (response is List<dynamic>) { List<ApiClothing> clothes =
+//           response.map((e) => ApiClothing.fromApi(e)).toList();}
+//           else{
+// List<ApiClothing> clothes = [ApiClothing.fromApi(response)];
+//           }
 
-      return clothes;
-    } else {
-      List<ApiClothing> clothes = [ApiClothing.fromApi(response)];
-      return clothes;
-    }
+//            return clothes.asFirst();
+//     }
+//     } else {
+//       await GetIt.I.isReady<HiveDI>();
+//       final hiveDI = GetIt.I<HiveDI>();
+//       final clothingBox = await hiveDI.getOrOpen<Clothing>(Clothing.boxName);
+
+//       final response = clothingBox.values.toList();
+//       return response.asSecond();
+//     }
   }
 
   Future<ApiClothing> getClothingById(int id) async {
@@ -63,20 +77,27 @@ class ClothingSource {
     return ApiClothing.fromApi(response);
   }
 
-  Future<ApiClothing> postNewClothing(Clothing clothing) async {
-    final data = ApiClothing().toJson(clothing);
-    final data_test = FormData.fromMap(data);
-    print(data_test);
+  Future<Union2<Clothing, ApiClothing>> postNewClothing(
+      Clothing clothing) async {
+    //TODO:код для бэка
+    // final data = ApiClothing().toJson(clothing);
     // final response = await _dio.post('clothing/post_new_clothing',
     //     data: FormData.fromMap(data));
-    //return ApiClothing.fromApi(response.data);
-
+    // return ApiClothing.fromApi(response.data).asFirst();
+    /*****************************************************************/
+    //TODO : mock дата
     final response =
         await json.decode(await rootBundle.loadString(MockPaths.clothing_one));
     final response_test = ApiClothing.fromApi(response);
+    return response_test.asSecond();
 
-    print(response_test);
-    return response_test;
+    // await GetIt.I.isReady<HiveDI>();
+    // final hiveDI = GetIt.I<HiveDI>();
+    // final clothingBox = await hiveDI.getOrOpen<Clothing>(Clothing.boxName);
+    // CommonMethods.printNamesOfBoxed();
+    // //clothingBox.add(clothing);
+    // print(clothingBox.values.where((element) => element == clothing));
+    // return clothing as Clothing;
     // Clothing clothing =
     //     response.map((e) => ApiClothing.fromApi(e)).cast<ApiClothing>();
 

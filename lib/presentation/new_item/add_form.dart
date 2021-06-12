@@ -14,6 +14,7 @@ import 'package:smartwardrobe/presentation/general/custom_app_bar.dart';
 import 'package:smartwardrobe/presentation/general/custom_textfield.dart';
 import 'package:smartwardrobe/presentation/general/logo_bar.dart';
 import 'package:smartwardrobe/presentation/general/multi_select_chip.dart';
+import 'package:smartwardrobe/util/common_methods.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 class AddClothingFormScreen extends StatefulWidget {
@@ -68,6 +69,11 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
       _selectedCategory = widget.clothing.category ?? null;
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -150,6 +156,7 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
               },
               onSuggestionSelected: (suggestion) {
                 _selectedSubCategory = suggestion;
+                _selectedCategory = _getCategory(_selectedSubCategory);
                 _categoryController.text = suggestion.name;
               },
               // ignore: missing_return
@@ -271,7 +278,8 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
                       formKey.currentState.save();
                       _postNewClothing();
                     } else {
-                      print('error');
+                      CommonMethods.showSnack(
+                          context, 'Ошибка заполнения формы');
                     }
                   },
                   child: Padding(
@@ -295,23 +303,24 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
 
   void _postNewClothing() {
     Clothing formClothing = new Clothing(
-        category: _selectedSubCategory,
-        subCategory: _selectedCategory,
+        category: _selectedCategory,
+        subCategory: _selectedSubCategory,
         brand: _selectedBrand,
         size: _sizeController.text ?? '',
         imageUrl: widget.imageFile.path,
         url: _urlController.text ?? '',
         price: int.tryParse(_priceController.text) ?? 0,
         seasons: _selectedSeasons);
-    print(formClothing.category);
-    print(formClothing.subCategory);
-    print(formClothing.brand);
-    print(formClothing.size);
-    print(formClothing.imageUrl);
-    print(formClothing.url);
-    print(formClothing.price);
-    print(formClothing.seasons);
-    //BlocProvider.of<ClothingBloc>(context)..add(CreateNewClothing());
+    // print(formClothing.category);
+    // print(formClothing.subCategory);
+    // print(formClothing.brand);
+    // print(formClothing.size);
+    // print(formClothing.imageUrl);
+    // print(formClothing.url);
+    // print(formClothing.price);
+    // print(formClothing.seasons);
+    BlocProvider.of<ClothingBloc>(context)
+      ..add(CreateNewClothing(clothing: formClothing));
   }
 
   List<ClothingCategory> _getCategories(String pattern) {
@@ -338,6 +347,13 @@ class AddClothingFormScreenState extends State<AddClothingFormScreen> {
         (brand) => brand.name.toLowerCase().contains(pattern.toLowerCase())));
     return result;
   }
+
+  ClothingCategory _getCategory(ClothingCategory category) {
+    ClothingCategory result;
+    for (var el in categories)
+      if (el.subcategory.contains(category)) result = el;
+    return result;
+  }
 }
 
 class DisplayImage extends StatelessWidget {
@@ -351,16 +367,18 @@ class DisplayImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8.w),
-      child: Container(
-        width: ScreenUtil().screenWidth,
-        height: ScreenUtil().screenWidth,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: CustomColors.lightGrey, width: 4.w),
-        ),
-        child: Image.file(
-          imageFile,
-          fit: BoxFit.scaleDown,
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: Container(
+          width: ScreenUtil().screenWidth,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: CustomColors.lightGrey, width: 4.w),
+          ),
+          child: Image.file(
+            imageFile,
+            fit: BoxFit.scaleDown,
+          ),
         ),
       ),
     );

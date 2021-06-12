@@ -15,4 +15,5 @@ part 'season.dart';
 part 'case.dart';
 part 'category.dart';
 part 'brand.dart';
+part 'models.g.dart';
 //part 'clothing.freezed.dart';

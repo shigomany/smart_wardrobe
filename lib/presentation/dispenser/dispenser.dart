@@ -17,7 +17,7 @@ class DispneserWindget extends StatefulWidget {
 }
 
 class _DispneserWindgetState extends State<DispneserWindget> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -48,7 +48,7 @@ class _DispneserWindgetState extends State<DispneserWindget> {
       ),
     ];
     // TODO: Удоли
-    _testHive();
+    //_testHive();
   }
 
   Future<void> _testHive() async {
@@ -58,11 +58,10 @@ class _DispneserWindgetState extends State<DispneserWindget> {
     // Test
     //final personBox = await hiveDi.getOrOpen<Person>(Person.boxName);
     //personBox.add(Person(name: 'Керилл', age: 21));
+    //personBox.clear() //Для удаления всех значений из таблицы
     // await Future.delayed(const Duration(milliseconds: 500));
     //final ss =
     //    personBox.values.where((element) => element.name == 'Керилл').toList();
-    //final chel = personBox.getAt(0);
-    //print(chel.key);
   }
 
   @override

@@ -1,24 +1,21 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
+
 import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:html/dom.dart' as dom;
+
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:quiver/iterables.dart';
-import 'package:smartwardrobe/data/api/model/models.dart';
+
 import 'package:smartwardrobe/presentation/bloc/brand.dart';
 import 'package:smartwardrobe/presentation/bloc/category.dart';
 import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
-import 'package:smartwardrobe/presentation/inherited_widget.dart';
-import 'package:smartwardrobe/presentation/new_item/add_form.dart';
-import 'package:smartwardrobe/presentation/new_item/item_from_camera.dart';
+
 import 'package:smartwardrobe/util/common_methods.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -41,8 +38,7 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
   String _html;
   String _urlItem;
   bool isItem = false;
-  String _initUrl =
-      "https://m.lamoda.ru/p/ne007ammgmr5/shoes-newbalance-krossovki/";
+  String _initUrl = "https://www.lamoda.ru/c/4152/default-men/";
   Clothing _clothing;
   Map<String, dynamic> _parsedClothing;
   List<String> _clothingImages;
@@ -81,7 +77,6 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
       onMessageReceived: (JavascriptMessage message) {
         String pageBody = message.message;
         _html = pageBody;
-        print('----------------HTML READY-----------');
       },
     );
   }
@@ -101,11 +96,6 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
             .getElementsByClassName('product-title__brand-name')
             .first
             .attributes['title'];
-        print(brand);
-        // final category = parse
-        //     .getElementsByClassName(
-        //         'product-photo-links__link product-catalog-links__link')[2]
-        //     .attributes['href'];
         final category = parse
             .querySelector('div.product-photo-links')
             .getElementsByClassName(
@@ -137,34 +127,10 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
       CommonMethods.showSnack(
           context, 'Пожалуйста, перейдите на страницу товара');
     }
-
-    // onPressed: () async {
-    //   if (isItem) {
-    //     //Попытка получить шмотку из CSV
-    //     //_fetchClothingFromCSV();
-    //     if (_clothing == null) {
-    //       _controller
-    //           .evaluateJavascript(
-    //               "(function(){Flutter.postMessage(window.document.body.outerHTML)})();")
-    //           .then((_html) => _parseClothing());
-    //     }
-    //     // Navigator.push(
-    //     //   context,
-    //     //   MaterialPageRoute(
-    //     //     builder: (context) => AddClothingFormScreen(
-    //     //       clothing: _clothing,
-    //     //       imageFile: File.fromUri(Uri.parse(
-    //     //           'https://a.lmcdn.ru/img600x866/I/X/IX001XM009PU_12887295_1_v2.jpeg')),
-    //     //     ),
-    //     //   ),
-    //     // );
-    //   } else {
-    //      CommonMethods.showSnack(context,  'Пожалуйста, перейдите на страницу товара')
-    //   }
-    // },
   }
 
   void _onSelectImage(String url) async {
+    CommonMethods.printNamesOfBoxed();
     ClothingCategory subCat;
     ClothingCategory cat;
     Brand brand;
@@ -176,17 +142,6 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
           orElse: () => subCat = null);
       if (subCat != null) cat = item;
     }
-    final test = categories[0].subcategory.where((element) =>
-        element.url == 'https://www.lamoda.ru/c/2635/clothes-zauzhennyem/');
-    print(test);
-    print(categories[0].subcategory[33].url ==
-        'https://www.lamoda.ru' + _parsedClothing["categoryUrl"]);
-    print('----------------------SUBCATURL----------------------');
-    print(_parsedClothing['categoryUrl']);
-    print('----------------------SUBCAT----------------------');
-    print(subCat);
-    print('----------------------CAT----------------------');
-    print(cat);
     brand = brands.firstWhere(
         (element) => element.name == _parsedClothing['brand'],
         orElse: () => brand = null);
@@ -200,14 +155,28 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
       price: _parsedClothing['price'] ?? 0,
     );
     await urlToFile('https:' + url).then(
-      (file) => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => EditPhotoScreen(
-            clothing: clothing,
-            imageFile: file,
-            isClothingProvided: true,
-          ),
+      (file) => Navigator.of(context).push(
+        PageRouteBuilder(
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return EditPhotoScreen(
+              isClothingProvided: true,
+              clothing: clothing,
+              imageFile: file,
+            );
+          },
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Interval(0.5, 1.0),
+                ),
+              ),
+              child: child,
+            );
+          },
+          transitionDuration: Duration(milliseconds: 250),
         ),
       ),
     );

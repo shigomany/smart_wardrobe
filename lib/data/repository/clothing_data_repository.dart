@@ -13,17 +13,26 @@ class ClothingRepositoryImpl extends ClothingRepository {
   Future<Clothing> postNewClothing({Clothing clothing}) async {
     final result = await clothingService.postNewClothing(clothing);
 
-    final response = result.toEntity();
-
-    return response;
+    if (result.value is ApiClothing) {
+      final response = result.value as ApiClothing;
+      return response.toEntity();
+    }
+    return result.value as Clothing;
   }
 
   @override
   Future<List<Clothing>> getAllClothing() async {
     final result = await clothingService.getAllClothing();
-    final list = result.map((e) => e.toEntity()).cast<Clothing>().toList();
+    if (result.value is List<Clothing>)
+      return result.value as List<Clothing>;
+    else {
+      final list = result.value as List<ApiClothing>;
 
-    return list;
+      final clothingList =
+          list.map((e) => e.toEntity()).cast<Clothing>().toList();
+
+      return clothingList;
+    }
   }
 
   @override

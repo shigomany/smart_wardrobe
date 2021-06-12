@@ -4,7 +4,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
-import 'package:smartwardrobe/presentation/new_item/item_from_camera.dart';
 import 'package:smartwardrobe/presentation/new_item/item_from_device.dart';
 import 'package:smartwardrobe/presentation/new_item/item_from_lamoda.dart';
 import 'package:smartwardrobe/resources/resources.dart';

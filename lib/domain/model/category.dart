@@ -1,9 +1,14 @@
 part of 'models.dart';
 
-class ClothingCategory extends Equatable {
+@HiveType(typeId: 2)
+class ClothingCategory extends HiveObject implements Equatable {
+  @HiveField(0)
   final String name;
+  @HiveField(1)
   final String url;
+  @HiveField(2)
   final List<String> tags;
+  @HiveField(3)
   final List<ClothingCategory> subcategory;
 
   ClothingCategory({

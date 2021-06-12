@@ -27,7 +27,7 @@ class ClothingBloc extends Bloc<ClothingEvent, ClothingState> {
       yield (ClothesListLoaded(clothingList: result));
     } else if (event is CreateNewClothing) {
       final result = await postNewClothingCase(event.clothing);
-
+      print(result);
       yield (ClothingLoaded(clothing: result));
     } else if (event is FetchClothingById) {
       final result = await getClothingById(event.id);

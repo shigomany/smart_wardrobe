@@ -92,6 +92,7 @@ void bloc() {
   sl.registerFactory(() => ImageFileBloc(clearBackground: sl()));
 }
 
+
 void setupInitial() {
   sources();
   repositories();

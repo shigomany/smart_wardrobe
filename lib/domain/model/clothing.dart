@@ -1,14 +1,26 @@
 part of 'models.dart';
 
-class Clothing extends Equatable {
+@HiveType(typeId: 0)
+class Clothing extends HiveObject implements Equatable {
+  static String get boxName => 'Clothing';
+
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final ClothingCategory category;
+  @HiveField(2)
   final ClothingCategory subCategory;
+  @HiveField(3)
   final Brand brand;
+  @HiveField(4)
   final String size;
+  @HiveField(5)
   final String imageUrl;
+  @HiveField(6)
   final String url;
+  @HiveField(7)
   final int price;
+  @HiveField(8)
   final List<String> seasons;
 
   bool isSelected;

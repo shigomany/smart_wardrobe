@@ -92,6 +92,11 @@ class _EditPhotoScreenState extends State<EditPhotoScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -140,10 +145,26 @@ class _EditPhotoScreenState extends State<EditPhotoScreen> {
                 child: SizedBox(
                   width: ScreenUtil().screenWidth,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          color: Color(0xFFf2f2f2),
+                        ),
+                        borderRadius: BorderRadius.circular(5.w),
+                      ),
+                    ),
                     onPressed: () => sendImage(),
                     child: Padding(
                       padding: EdgeInsets.all(16.w),
-                      child: Text('Удалить фон'),
+                      child: Text(
+                        'Удалить фон',
+                        style: TextStyle(
+                            color: Color(0xFF333333),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                   ),
                 ),
@@ -153,33 +174,85 @@ class _EditPhotoScreenState extends State<EditPhotoScreen> {
                 child: SizedBox(
                   width: ScreenUtil().screenWidth,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          color: Color(0xFFf2f2f2),
+                        ),
+                        borderRadius: BorderRadius.circular(5.w),
+                      ),
+                    ),
                     onPressed: () => adjustImage(),
                     child: Padding(
                       padding: EdgeInsets.all(16.w),
-                      child: Text('Обрезать фото'),
+                      child: Text(
+                        'Обрезать фото',
+                        style: TextStyle(
+                            color: Color(0xFF333333),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                   ),
                 ),
               ),
+              Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.w),
                 child: SizedBox(
                   width: ScreenUtil().screenWidth,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          width: 1,
+                          color: Color(0xFFf2f2f2),
+                        ),
+                        borderRadius: BorderRadius.circular(5.w),
+                      ),
+                    ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddClothingFormScreen(
-                            clothing: widget.clothing,
-                            imageFile: _imageFile,
-                          ),
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secondaryAnimation) {
+                            return AddClothingFormScreen(
+                              clothing: widget.clothing,
+                              imageFile: _imageFile,
+                            );
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return FadeTransition(
+                              opacity:
+                                  Tween<double>(begin: 0.0, end: 1.0).animate(
+                                CurvedAnimation(
+                                  parent: animation,
+                                  curve: Interval(0.5, 1.0),
+                                ),
+                              ),
+                              child: child,
+                            );
+                          },
+                          transitionDuration: Duration(milliseconds: 250),
                         ),
                       );
                     },
                     child: Padding(
                       padding: EdgeInsets.all(16.w),
-                      child: Text('Перейти к сохранению'),
+                      child: Text(
+                        'Перейти к описанию свойств',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color(0xFF333333),
+                            fontSize: 14.sp,
+                            height: 1.5,
+                            fontWeight: FontWeight.normal),
+                      ),
                     ),
                   ),
                 ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
@@ -29,6 +31,7 @@ class ItemScreen extends StatefulWidget {
 class _ItemScreenState extends State<ItemScreen> {
   List<Set> sets;
   //Clothing item;
+  Image img;
 
   Future navigateBack(context) async {
     Navigator.of(context).pop();
@@ -43,10 +46,28 @@ class _ItemScreenState extends State<ItemScreen> {
 
   @override
   void initState() {
-    BlocProvider.of<SetBloc>(context)..add(FetchRelatedSets(1));
+    _initImg();
+    //BlocProvider.of<SetBloc>(context)..add(FetchRelatedSets(1));
     //BlocProvider.of<ClothingBloc>(context)..add(FetchClothingById(id: 1));
 
     super.initState();
+  }
+
+  _initImg() async {
+    File(widget.item.imageUrl).exists().then((value) {
+      if (value) {
+        setState(() {
+          img = Image.file(File(widget.item.imageUrl), fit: BoxFit.scaleDown);
+        });
+      } else {
+        setState(() {
+          img = Image.network(
+            widget.item.imageUrl,
+            fit: BoxFit.scaleDown,
+          );
+        });
+      }
+    });
   }
 
   @override
@@ -152,8 +173,7 @@ class _ItemScreenState extends State<ItemScreen> {
                                 border: Border.all(
                                     color: Color(0xFFF2F2F2), width: 4.w),
                               ),
-                              child: Image.network(widget.item.imageUrl,
-                                  fit: BoxFit.scaleDown),
+                              child: img,
                             ),
                             Padding(
                               padding: EdgeInsets.all(16.w),

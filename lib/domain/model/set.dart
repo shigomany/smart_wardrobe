@@ -1,14 +1,26 @@
 part of 'models.dart';
 
-class Set extends Equatable {
+@HiveType(typeId: 1)
+class Set extends HiveObject implements Equatable {
+  static String get boxName => 'Set';
+
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String description;
+  @HiveField(3)
   final String imageUrl;
+  @HiveField(4)
   final int minTemp;
+  @HiveField(5)
   final int maxTemp;
+  @HiveField(6)
   final List<Clothing> clothes;
+  @HiveField(7)
   final List<Case> cases;
+  @HiveField(8)
   final List<Season> seasons;
 
   Set({

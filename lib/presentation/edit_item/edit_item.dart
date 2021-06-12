@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,14 +23,34 @@ class EditItemScreen extends StatefulWidget {
 }
 
 class _EditItemScreenState extends State<EditItemScreen> {
+  Image img;
   @override
   void initState() {
+    _initImg();
+    _categoryController.text = widget.clothing.subCategory.name ?? '';
+    _brandController.text = widget.clothing.brand.name ?? '';
+    _sizeController.text = widget.clothing.size ?? '';
+    _urlController.text = widget.clothing.url ?? '';
+    _priceController.text = widget.clothing.price.toString() ?? '';
     super.initState();
-    _categoryController.text = widget.clothing.subCategory.name;
-    _brandController.text = widget.clothing.brand.name;
-    _sizeController.text = widget.clothing.size;
-    _urlController.text = widget.clothing.url;
-    _priceController.text = widget.clothing.price.toString();
+  }
+
+  _initImg() async {
+    File(widget.clothing.imageUrl).exists().then((value) {
+      if (value) {
+        setState(() {
+          img =
+              Image.file(File(widget.clothing.imageUrl), fit: BoxFit.scaleDown);
+        });
+      } else {
+        setState(() {
+          img = Image.network(
+            widget.clothing.imageUrl,
+            fit: BoxFit.scaleDown,
+          );
+        });
+      }
+    });
   }
 
   final _categoryController = TextEditingController();
@@ -80,10 +102,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                               border: Border.all(
                                   color: Color(0xFFF2F2F2), width: 4.w),
                             ),
-                            child: Image.network(
-                              widget.clothing.imageUrl,
-                              fit: BoxFit.fitHeight,
-                            ),
+                            child: img,
                           ),
                         ],
                       ),
