@@ -1,35 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:data_connection_checker/data_connection_checker.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:get_it/get_it.dart';
+import 'package:smartwardrobe/data/api/datasource/base_source.dart';
 import 'package:smartwardrobe/data/api/model/models.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
-import 'package:smartwardrobe/internal/di/hive.dart';
 import 'package:smartwardrobe/resources/resources.dart';
-import 'package:smartwardrobe/util/common_methods.dart';
-import 'package:smartwardrobe/util/constants.dart';
 import 'package:union/union.dart';
 
-class ClothingSource {
-  Dio _dio;
-  final _headers = <String, String>{
-    HttpHeaders.acceptHeader: 'application/json',
-  };
-
-  ClothingSource() {
-    _dio = Dio(BaseOptions(
-      baseUrl: apiUrl,
-      sendTimeout: 5000, // 5s
-      contentType: 'application/json; charset=UTF-8',
-      followRedirects: false,
-      headers: _headers,
-      validateStatus: (status) => status <= 500,
-    ));
-  }
-
+class ClothingSource extends BaseSource {
   //TODO: когда будет готов бэк
   // Future<List<ApiClothing>> getAllClothing() async {
   //   final response = await _dio.get('clothing/all_clothing');

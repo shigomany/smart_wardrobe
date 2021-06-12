@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
 
 part 'user.dart';
 part 'validator.dart';

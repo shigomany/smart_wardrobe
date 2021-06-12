@@ -21,13 +21,10 @@ import 'package:smartwardrobe/domain/repository/image_file_repository.dart';
 import 'package:smartwardrobe/domain/repository/set_repository.dart';
 import 'package:smartwardrobe/domain/repository/weather_repository.dart';
 import 'package:smartwardrobe/domain/usecase/clear_bg.dart';
-import 'package:smartwardrobe/domain/usecase/get_all_clothing.dart';
+import 'package:smartwardrobe/domain/usecase/clothing_interactor.dart';
 import 'package:smartwardrobe/domain/usecase/get_brand_list.dart';
 import 'package:smartwardrobe/domain/usecase/get_categories_by_gender.dart';
-import 'package:smartwardrobe/domain/usecase/get_clothing_by_id.dart';
-import 'package:smartwardrobe/domain/usecase/get_clothing_from_lamoda.dart';
 import 'package:smartwardrobe/domain/usecase/get_related_sets.dart';
-import 'package:smartwardrobe/domain/usecase/post_new_clothing.dart';
 import 'package:smartwardrobe/domain/usecase/get_weather.dart';
 import 'package:smartwardrobe/internal/di/global.dart';
 import 'package:smartwardrobe/internal/di/hive.dart';
@@ -67,31 +64,23 @@ void repositories() {
 }
 
 void usecases() {
+  sl.registerFactory(() => ClothingInteractor(sl()));
   sl.registerFactory(() => GetWeather(sl()));
-  sl.registerFactory(() => GetAllClothing(sl()));
-  sl.registerFactory(() => PostNewClothing(sl()));
   sl.registerFactory(() => GetRelatedSets(sl()));
-  sl.registerFactory(() => GetClothingById(sl()));
   sl.registerFactory(() => GetCategoriesByGender(sl()));
   sl.registerFactory(() => GetBrandList(sl()));
   sl.registerFactory(() => ClearBackground(sl()));
-  sl.registerFactory(() => GetClothingFromLamoda(sl()));
 }
 
 void bloc() {
   sl.registerFactory(() => AuthBloc(authRepository: sl()));
   sl.registerFactory(() => WeatherBloc(getWeatherCase: sl()));
-  sl.registerFactory(() => ClothingBloc(
-      getAllClothingCase: sl(),
-      postNewClothingCase: sl(),
-      getClothingById: sl(),
-      getClothingFromLamoda: sl()));
+  sl.registerFactory(() => ClothingBloc(sl()));
   sl.registerFactory(() => SetBloc(getRelatedSetsCase: sl()));
   sl.registerFactory(() => CategoryBloc(getCategoriesByGender: sl()));
   sl.registerFactory(() => BrandBloc(getBrandList: sl()));
   sl.registerFactory(() => ImageFileBloc(clearBackground: sl()));
 }
-
 
 void setupInitial() {
   sources();

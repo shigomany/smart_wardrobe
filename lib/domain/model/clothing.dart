@@ -37,14 +37,12 @@ class Clothing extends HiveObject implements Equatable {
       this.seasons,
       this.isSelected});
 
-  ViewClothing get asViewClothing => ViewClothing(
-      id: id,
-      cardName: brand.name + ' ' + subCategory.name,
-      imageUrl: imageUrl,
-      isSelected: isSelected);
-
   @override
   bool get stringify => true;
+
+  bool get isRemouteImage => RegExp(
+          '(\b(https?|http)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]')
+      .hasMatch(this.imageUrl);
 
   @override
   List<Object> get props {

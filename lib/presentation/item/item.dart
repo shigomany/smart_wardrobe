@@ -54,19 +54,21 @@ class _ItemScreenState extends State<ItemScreen> {
   }
 
   _initImg() async {
+    if (widget.item.isRemouteImage) {
+      setState(() {
+        img = Image.network(
+          widget.item.imageUrl,
+          fit: BoxFit.scaleDown,
+        );
+      });
+
+      return null;
+    }
+
     File(widget.item.imageUrl).exists().then((value) {
-      if (value) {
-        setState(() {
-          img = Image.file(File(widget.item.imageUrl), fit: BoxFit.scaleDown);
-        });
-      } else {
-        setState(() {
-          img = Image.network(
-            widget.item.imageUrl,
-            fit: BoxFit.scaleDown,
-          );
-        });
-      }
+      setState(() {
+        img = Image.file(File(widget.item.imageUrl), fit: BoxFit.scaleDown);
+      });
     });
   }
 

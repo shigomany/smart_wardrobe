@@ -35,9 +35,6 @@ class Set extends HiveObject implements Equatable {
     this.seasons,
   });
 
-  ViewClothing get asViewClothing => ViewClothing(
-      id: id, cardName: name, imageUrl: imageUrl, isSelected: false);
-
   @override
   bool get stringify => true;
 

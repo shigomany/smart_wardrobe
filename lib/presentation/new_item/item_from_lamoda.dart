@@ -1,20 +1,16 @@
-import 'dart:async';
-
-import 'dart:io';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:html/parser.dart' as parser;
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
 import 'package:quiver/iterables.dart';
+import 'package:smartwardrobe/data/services/load_image_service.dart';
+import 'package:smartwardrobe/data/services/load_info_service.dart';
+import 'package:smartwardrobe/internal/di/init.dart';
 
 import 'package:smartwardrobe/presentation/bloc/brand.dart';
 import 'package:smartwardrobe/presentation/bloc/category.dart';
 import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
+import 'package:smartwardrobe/presentation/general/page_transition.dart';
 
 import 'package:smartwardrobe/util/common_methods.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -34,187 +30,108 @@ class ItemFromLamodaScreen extends StatefulWidget {
 }
 
 class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
-  WebViewController _controller;
-  String _html;
   String _urlItem;
-  bool isItem = false;
   String _initUrl = "https://www.lamoda.ru/c/4152/default-men/";
+
+  final LoadImageService loadImageService = LoadImageService();
   Clothing _clothing;
+
+  final LoadInfoService loadInfoService = LoadInfoService();
   Map<String, dynamic> _parsedClothing;
   List<String> _clothingImages;
-  List<ClothingCategory> categories;
-  List<Brand> brands;
+  bool _isItem = false;
+
   @override
   void initState() {
     BlocProvider.of<CategoryBloc>(context)
       ..add(FetchCategoriesByGender(gender: 'male'));
     BlocProvider.of<BrandBloc>(context)..add(FetchBrandList());
     super.initState();
+
+    initObservers();
+    initBlocObserver();
+  }
+
+  void initObservers() {
+    loadInfoService.handleParsedImages().listen((event) {
+      setState(() {
+        _clothingImages = event;
+      });
+    });
+
+    loadInfoService.handleParsedClothing().listen((event) {
+      setState(() {
+        _parsedClothing = event;
+        loadImageService.setParsedClothing = event;
+      });
+    });
+    loadInfoService.handleIsItem().listen((event) {
+      setState(() {
+        _isItem = event;
+      });
+    });
+
+    loadImageService.handleClothing.listen((event) {
+      setState(() {
+        _clothing = event;
+      });
+    });
+
+    loadImageService.handleFile.listen((event) {
+      Navigator.of(context).push(
+        pageTransition(EditPhotoScreen(
+          isClothingProvided: true,
+          clothing: _clothing,
+          imageFile: event,
+        )),
+      );
+    });
+  }
+
+  void initBlocObserver() {
+    BlocProvider.of<CategoryBloc>(context)
+      ..stream.listen((state) {
+        if (state is CategoryLoaded) {
+          loadImageService.setCategories = state.categories;
+        }
+      });
+    BlocProvider.of<BrandBloc>(context)
+      ..stream.listen((state) {
+        if (state is BrandLoaded) {
+          loadImageService.setBrands = state.list;
+        }
+      });
   }
 
   @override
   void dispose() {
     super.dispose();
     _clothing = null;
-  }
 
-  void checkUrl(String url) {
-    final uri = Uri.parse(url);
-    setState(() {
-      isItem = uri.pathSegments[0] == 'p' && uri.pathSegments.length == 4;
-    });
+    loadImageService.cleanup();
+    loadInfoService.cleanup();
   }
 
   void _fetchClothingFromCSV() {
     final String id = '333';
-    BlocProvider.of<ClothingBloc>(context)
-      ..add(FetchClothingFromLamoda(id: id));
+    sl.get<ClothingBloc>().add(FetchClothingFromLamoda(id: id));
   }
 
-  JavascriptChannel _extractDataJSChannel(BuildContext context) {
-    return JavascriptChannel(
-      name: 'Flutter',
-      onMessageReceived: (JavascriptMessage message) {
-        String pageBody = message.message;
-        _html = pageBody;
-      },
-    );
-  }
-
-  ///Спарсить данные о вещи непосредственно с HTML
   void _fetchClothingFromWebPage() {
-    if (isItem) {
-      _controller
-          .evaluateJavascript(
-              "(function(){Flutter.postMessage(window.document.body.outerHTML)})();")
-          .then((_) {
-        final parse = parser.parse(_html);
-        final price = parse.querySelector('[aria-label="Итоговая цена"]').text;
-        int priceNum = int.tryParse(
-            price.substring(0, price.length - 2).replaceAll(' ', ''));
-        final brand = parse
-            .getElementsByClassName('product-title__brand-name')
-            .first
-            .attributes['title'];
-        final category = parse
-            .querySelector('div.product-photo-links')
-            .getElementsByClassName(
-                'product-photo-links__link product-catalog-links__link')[2]
-            .attributes['href'];
-        final imageList = parse.querySelectorAll('img');
-        List<String> list = [];
-        imageList.forEach((element) {
-          final src = element.attributes['src'];
-          if (src != null &&
-              src.contains(Uri.parse(_urlItem).pathSegments[1].toUpperCase()))
-            list.add(src);
-        });
-        _clothingImages = list.toSet().toList();
-        setState(() {
-          _parsedClothing = {
-            "categoryUrl": category,
-            "subCategory": "",
-            "brand": brand,
-            "size": "",
-            "imageUrl": "",
-            "url": _urlItem,
-            "price": priceNum,
-            "seasons": "",
-          };
-        });
-      });
-    } else {
+    final result = loadInfoService.fetchClothingFromWebPage();
+
+    if (!result) {
       CommonMethods.showSnack(
           context, 'Пожалуйста, перейдите на страницу товара');
     }
   }
 
-  void _onSelectImage(String url) async {
-    CommonMethods.printNamesOfBoxed();
-    ClothingCategory subCat;
-    ClothingCategory cat;
-    Brand brand;
-    for (var item in categories) {
-      subCat = item.subcategory.firstWhere(
-          (element) =>
-              element.url ==
-              'https://www.lamoda.ru' + _parsedClothing["categoryUrl"],
-          orElse: () => subCat = null);
-      if (subCat != null) cat = item;
-    }
-    brand = brands.firstWhere(
-        (element) => element.name == _parsedClothing['brand'],
-        orElse: () => brand = null);
-    Clothing clothing = new Clothing(
-      category: cat,
-      subCategory: subCat,
-      size: '' ?? '',
-      brand: brand,
-      url: _urlItem ?? '',
-      imageUrl: url ?? '',
-      price: _parsedClothing['price'] ?? 0,
-    );
-    await urlToFile('https:' + url).then(
-      (file) => Navigator.of(context).push(
-        PageRouteBuilder(
-          pageBuilder: (BuildContext context, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return EditPhotoScreen(
-              isClothingProvided: true,
-              clothing: clothing,
-              imageFile: file,
-            );
-          },
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(
-              opacity: Tween<double>(begin: 0.0, end: 1.0).animate(
-                CurvedAnimation(
-                  parent: animation,
-                  curve: Interval(0.5, 1.0),
-                ),
-              ),
-              child: child,
-            );
-          },
-          transitionDuration: Duration(milliseconds: 250),
-        ),
-      ),
-    );
-  }
-
-  //TODO:вынести в слой Data
-  Future<File> urlToFile(String imageUrl) async {
-// generate random number.
-    var rng = new Random();
-// get temporary directory of device.
-    Directory tempDir = await getTemporaryDirectory();
-// get temporary path from temporary directory.
-    String tempPath = tempDir.path;
-// create a new file in temporary path with random file name.
-    File file = new File('$tempPath' + (rng.nextInt(100)).toString() + '.png');
-// call http.get method and pass imageUrl into it to get response.
-    http.Response response = await http.get(Uri.parse(imageUrl));
-// write bodyBytes received in response to file.
-    await file.writeAsBytes(response.bodyBytes);
-// now return the file which is created with random name in
-// temporary directory and image bytes from response is written to // that file.
-    return file;
-  }
+  void _onSelectImage(String url) => loadImageService.onSelectImage(url);
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<CategoryBloc, CategoryState>(listener: (context, state) {
-          if (state is CategoryLoaded) {
-            categories = state.categories;
-          }
-        }),
-        BlocListener<BrandBloc, BrandState>(listener: (context, state) {
-          if (state is BrandLoaded) {
-            brands = state.list;
-          }
-        }),
         BlocListener<ClothingBloc, ClothingState>(listener: (context, state) {
           if (state is ClothingFromLamodaLoaded) {
             _clothing = state.clothing;
@@ -299,22 +216,23 @@ class _ItemFromLamodaScreenState extends State<ItemFromLamodaScreen> {
                                           JavascriptMode.unrestricted,
                                       onWebViewCreated:
                                           (WebViewController controller) {
-                                        _controller = controller;
+                                        loadInfoService.setController =
+                                            controller;
                                       },
                                       javascriptChannels: <JavascriptChannel>[
-                                        _extractDataJSChannel(context)
+                                        loadInfoService
+                                            .extractDataJSChannel(context)
                                       ].toSet(),
                                       onPageStarted: (url) {
                                         _urlItem = url;
-                                        checkUrl(_urlItem);
-                                        _parsedClothing = null;
+                                        loadInfoService.checkUrl(url);
                                       },
                                       onPageFinished: (String url) async {},
                                     ),
                                   ),
                                 ),
                                 SelectItemButton(
-                                  isItem: isItem,
+                                  isItem: _isItem,
                                   onButtonPressed: () =>
                                       _fetchClothingFromWebPage(),
                                 )

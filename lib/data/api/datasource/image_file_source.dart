@@ -1,23 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:smartwardrobe/data/api/model/models.dart';
-import 'package:smartwardrobe/domain/usecase/clear_bg.dart';
-import 'package:smartwardrobe/resources/resources.dart';
-import 'package:smartwardrobe/util/constants.dart';
-import 'package:union/union.dart';
+import 'package:smartwardrobe/data/api/datasource/base_source.dart';
 
-class ImageFileSource {
-  Dio _dio;
-  final _headers = <String, String>{
-    HttpHeaders.acceptHeader: 'application/json',
-  };
-
+class ImageFileSource extends BaseSource {
   static const _chars =
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   Random _rnd = Random();
@@ -25,23 +13,12 @@ class ImageFileSource {
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
-  ImageFileSource() {
-    _dio = Dio(BaseOptions(
-      baseUrl: 'http://192.168.1.32:5000',
-      sendTimeout: 5000, // 5s
-      contentType: 'application/json; charset=UTF-8',
-      followRedirects: false,
-      headers: _headers,
-      validateStatus: (status) => status <= 500,
-    ));
-  }
-
   Future<File> clearBackground(File file) async {
     FormData formData = FormData.fromMap({
       "file": await MultipartFile.fromFile(file.path,
           filename: file.path.split("/").last)
     });
-    final response = await _dio.post('/',
+    final response = await dio.post('/',
         data: formData, options: Options(responseType: ResponseType.bytes));
     print(response);
 
