@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
 
 part 'user.dart';
 part 'validator.dart';
@@ -14,4 +14,5 @@ part 'season.dart';
 part 'case.dart';
 part 'category.dart';
 part 'brand.dart';
+part 'models.g.dart';
 //part 'clothing.freezed.dart';

@@ -22,3 +22,9 @@ class FetchClothingById extends ClothingEvent {
 
   FetchClothingById({this.id});
 }
+
+class FetchClothingFromLamoda extends ClothingEvent {
+  String id;
+
+  FetchClothingFromLamoda({this.id});
+}

@@ -3,15 +3,18 @@ import 'package:flutter_custom_dialog/flutter_custom_dialog.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:smartwardrobe/presentation/item_from_camera/item_from_camera.dart';
+import 'package:smartwardrobe/presentation/edit_photo/edit_photo.dart';
+import 'package:smartwardrobe/presentation/new_item/item_from_device.dart';
+import 'package:smartwardrobe/presentation/new_item/item_from_lamoda.dart';
 import 'package:smartwardrobe/resources/resources.dart';
+import 'package:smartwardrobe/util/constants.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 
 Future navigateToScreen(context, routeLink) async {
   Navigator.push(context, MaterialPageRoute(builder: (context) => routeLink));
 }
 
-YYDialog YYBottomSheetDialog(BuildContext context) {
+YYDialog bottomAddMenu(BuildContext context) {
   return YYDialog().build(context)
     ..gravity = Gravity.bottom
     ..gravityAnimationEnable = true
@@ -46,39 +49,8 @@ YYDialog YYBottomSheetDialog(BuildContext context) {
               color: Colors.white,
               child: InkWell(
                 onTap: () {
-                  print("Подобрать из интернета");
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Color(0xFFEDEDED)),
-                    ),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        top: 8.w, bottom: 8.w, left: 32.w, right: 16.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Подобрать из интернета',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                            )),
-                        Icon(
-                          MaterialIcons.keyboard_arrow_right,
-                          size: 32.sp,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Material(
-              color: Colors.white,
-              child: InkWell(
-                onTap: () {
-                  navigateToScreen(context, ItemFromCamera());
+                  navigateToScreen(context,
+                      ItemFromDeviceScreen(imageType: ImageType.TYPE_CAMERA));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -110,7 +82,8 @@ YYDialog YYBottomSheetDialog(BuildContext context) {
               color: Colors.white,
               child: InkWell(
                 onTap: () {
-                  print("Выбрать фото из галереи");
+                  navigateToScreen(context,
+                      ItemFromDeviceScreen(imageType: ImageType.TYPE_GALLERY));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -124,7 +97,41 @@ YYDialog YYBottomSheetDialog(BuildContext context) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Выбрать фото из галереи',
+                        Text(
+                          'Выбрать фото из галереи',
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        Icon(
+                          MaterialIcons.keyboard_arrow_right,
+                          size: 32.sp,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Material(
+              color: Colors.white,
+              child: InkWell(
+                onTap: () {
+                  navigateToScreen(context, ItemFromLamodaScreen());
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Color(0xFFEDEDED)),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 8.w, bottom: 8.w, left: 32.w, right: 16.w),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Подобрать из каталога Lamoda',
                             style: TextStyle(
                               fontSize: 14.sp,
                             )),

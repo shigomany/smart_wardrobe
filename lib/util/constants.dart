@@ -8,3 +8,9 @@ const String weatherApiUrl = 'api.openweathermap.org/data/2.5/weather';
 const String rembgUrl = 'http://192.168.1.32:5000';
 const String weatherAppId = '4ad5c6aa9bf714a6ea81b9e75cd19115';
 const String weatherUri = apiUrl + weatherApiUrl;
+
+//dev
+const bool IS_DEV_VER = true;
+const bool NETWORK_CONNECT = false;
+
+enum ImageType { TYPE_GALLERY, TYPE_CAMERA }

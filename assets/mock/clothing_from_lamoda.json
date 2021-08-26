@@ -1,0 +1,27 @@
+    {
+        "id": 1337,
+        "category": {
+            "name": "Одежда",
+            "URL": "https://www.lamoda.ru/c/477/clothes-muzhskaya-odezhda/",
+            "tags": [],
+            "subcategory": []
+        },
+        "subCategory": {
+            "name": "Худи",
+            "URL": "https://www.lamoda.ru/c/2511/clothes-muzhskie-hudi/",
+            "tags": [
+                "Одежда",
+                "Толстовки и олимпийки"
+            ],
+            "subcategory": []
+        },
+        "brand": {
+            "name": "Pull&Bear",
+            "URL": "https://www.lamoda.ru/b/28181/brand-pullandbear/"
+        },
+        "size": "",
+        "image_url": "https://a.lmcdn.ru/img600x866/I/X/IX001XM009PU_12887295_1_v2.jpeg",
+        "url": "https://www.lamoda.ru/p/ix001xm009pu/clothes-pullandbear-khudi/",
+        "price": 1999,
+        "seasons": []
+    }

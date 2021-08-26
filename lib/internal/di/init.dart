@@ -21,12 +21,10 @@ import 'package:smartwardrobe/domain/repository/image_file_repository.dart';
 import 'package:smartwardrobe/domain/repository/set_repository.dart';
 import 'package:smartwardrobe/domain/repository/weather_repository.dart';
 import 'package:smartwardrobe/domain/usecase/clear_bg.dart';
-import 'package:smartwardrobe/domain/usecase/get_all_clothing.dart';
+import 'package:smartwardrobe/domain/usecase/clothing_interactor.dart';
 import 'package:smartwardrobe/domain/usecase/get_brand_list.dart';
 import 'package:smartwardrobe/domain/usecase/get_categories_by_gender.dart';
-import 'package:smartwardrobe/domain/usecase/get_clothing_by_id.dart';
 import 'package:smartwardrobe/domain/usecase/get_related_sets.dart';
-import 'package:smartwardrobe/domain/usecase/post_new_clothing.dart';
 import 'package:smartwardrobe/domain/usecase/get_weather.dart';
 import 'package:smartwardrobe/internal/di/global.dart';
 import 'package:smartwardrobe/internal/di/hive.dart';
@@ -38,7 +36,7 @@ import 'package:smartwardrobe/presentation/bloc/image_file.dart';
 import 'package:smartwardrobe/presentation/bloc/set.dart';
 import 'package:smartwardrobe/presentation/bloc/weather.dart';
 
-// final sl = GetIt.I;
+final sl = GetIt.I;
 
 void sources() {
   GetIt.I.registerFactory(() => WeatherSource());
@@ -66,27 +64,22 @@ void repositories() {
 }
 
 void usecases() {
-  GetIt.I.registerFactory(() => GetWeather(GetIt.I()));
-  GetIt.I.registerFactory(() => GetAllClothing(GetIt.I()));
-  GetIt.I.registerFactory(() => PostNewClothing(GetIt.I()));
-  GetIt.I.registerFactory(() => GetRelatedSets(GetIt.I()));
-  GetIt.I.registerFactory(() => GetClothingById(GetIt.I()));
-  GetIt.I.registerFactory(() => GetCategoriesByGender(GetIt.I()));
-  GetIt.I.registerFactory(() => GetBrandList(GetIt.I()));
-  GetIt.I.registerFactory(() => ClearBackground(GetIt.I()));
+  sl.registerFactory(() => ClothingInteractor(sl()));
+  sl.registerFactory(() => GetWeather(sl()));
+  sl.registerFactory(() => GetRelatedSets(sl()));
+  sl.registerFactory(() => GetCategoriesByGender(sl()));
+  sl.registerFactory(() => GetBrandList(sl()));
+  sl.registerFactory(() => ClearBackground(sl()));
 }
 
 void bloc() {
-  GetIt.I.registerFactory(() => AuthBloc(authRepository: GetIt.I()));
-  GetIt.I.registerFactory(() => WeatherBloc(getWeatherCase: GetIt.I()));
-  GetIt.I.registerFactory(() => ClothingBloc(
-      getAllClothingCase: GetIt.I(),
-      postNewClothingCase: GetIt.I(),
-      getClothingById: GetIt.I()));
-  GetIt.I.registerFactory(() => SetBloc(getRelatedSetsCase: GetIt.I()));
-  GetIt.I.registerFactory(() => CategoryBloc(getCategoriesByGender: GetIt.I()));
-  GetIt.I.registerFactory(() => BrandBloc(getBrandList: GetIt.I()));
-  GetIt.I.registerFactory(() => ImageFileBloc(clearBackground: GetIt.I()));
+  sl.registerFactory(() => AuthBloc(authRepository: sl()));
+  sl.registerFactory(() => WeatherBloc(getWeatherCase: sl()));
+  sl.registerFactory(() => ClothingBloc(sl()));
+  sl.registerFactory(() => SetBloc(getRelatedSetsCase: sl()));
+  sl.registerFactory(() => CategoryBloc(getCategoriesByGender: sl()));
+  sl.registerFactory(() => BrandBloc(getBrandList: sl()));
+  sl.registerFactory(() => ImageFileBloc(clearBackground: sl()));
 }
 
 void setupInitial() {

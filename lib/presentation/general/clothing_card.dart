@@ -1,11 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:quiver/iterables.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/presentation/item/item.dart';
-import 'package:smartwardrobe/presentation/view_models/clothing.dart';
 import 'package:smartwardrobe/util/custom_colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:union/union.dart';
 
 class ClothingCard extends StatefulWidget {
   final void Function(int) onChangeState;
@@ -19,6 +19,32 @@ class ClothingCard extends StatefulWidget {
 }
 
 class _ClothingCardState extends State<ClothingCard> {
+  Image img;
+  @override
+  void initState() {
+    _initImg();
+
+    super.initState();
+  }
+
+  _initImg() async {
+    File(widget.item.value.imageUrl).exists().then((value) {
+      if (value) {
+        setState(() {
+          img = Image.file(File(widget.item.value.imageUrl),
+              fit: BoxFit.scaleDown);
+        });
+      } else {
+        setState(() {
+          img = Image.network(
+            widget.item.value.imageUrl,
+            fit: BoxFit.scaleDown,
+          );
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -52,17 +78,13 @@ class _ClothingCardState extends State<ClothingCard> {
                 Stack(
                   children: [
                     Container(
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Color(0xFFF2F2F2), width: 1.w),
-                      ),
-                      width: widthScreen / 2 - 24.w,
-                      height: widthScreen / 2 - 24.w,
-                      child: Image.network(
-                        widget.item.value.imageUrl,
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xFFF2F2F2), width: 1.w),
+                        ),
+                        width: widthScreen / 2 - 24.w,
+                        height: widthScreen / 2 - 24.w,
+                        child: img),
                     if (widget.item.value.isSelected)
                       Container(
                         color: Colors.white70,

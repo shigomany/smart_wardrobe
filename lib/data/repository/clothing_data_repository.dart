@@ -1,6 +1,9 @@
 import 'package:smartwardrobe/data/api/datasource/clothing_source.dart';
+import 'package:smartwardrobe/data/api/model/models.dart';
+import 'package:smartwardrobe/data/mapper/validator_mapper.dart';
 import 'package:smartwardrobe/domain/model/models.dart';
 import 'package:smartwardrobe/domain/repository/clothing_repository.dart';
+import 'package:union/union.dart';
 
 class ClothingRepositoryImpl extends ClothingRepository {
   final ClothingSource clothingService;
@@ -10,17 +13,26 @@ class ClothingRepositoryImpl extends ClothingRepository {
   Future<Clothing> postNewClothing({Clothing clothing}) async {
     final result = await clothingService.postNewClothing(clothing);
 
-    final response = result.toEntity();
-
-    return response;
+    if (result.value is ApiClothing) {
+      final response = result.value as ApiClothing;
+      return response.toEntity();
+    }
+    return result.value as Clothing;
   }
 
   @override
   Future<List<Clothing>> getAllClothing() async {
     final result = await clothingService.getAllClothing();
-    final list = result.map((e) => e.toEntity()).cast<Clothing>().toList();
+    if (result.value is List<Clothing>)
+      return result.value as List<Clothing>;
+    else {
+      final list = result.value as List<ApiClothing>;
 
-    return list;
+      final clothingList =
+          list.map((e) => e.toEntity()).cast<Clothing>().toList();
+
+      return clothingList;
+    }
   }
 
   @override
@@ -30,5 +42,21 @@ class ClothingRepositoryImpl extends ClothingRepository {
     final item = result.toEntity();
 
     return item;
+  }
+
+  @override
+  Future<Union2<Clothing, List<Validator>>> getClothingFromLamoda(
+      {String id}) async {
+    final result = await clothingService.getClothingFromLamoda(id);
+
+    if (result.value is ApiClothing) {
+      final ApiClothing clothing = result.value;
+      return clothing.toEntity().asFirst();
+    } else {
+      return (result.value as List<ApiValidator>)
+          .map(ValidatorMapper.fromApi)
+          .toList()
+          .asSecond();
+    }
   }
 }

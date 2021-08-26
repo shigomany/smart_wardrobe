@@ -84,8 +84,6 @@ class _MainScreenState extends State<MainScreen> {
                 buttonTextColor: Color(0xFF84B3ED),
                 backgroundColor: Color(0xFF84B3ED),
               ),
-              // ListMenuSlider(title: 'Добавить новую вещь'),
-              // ListMenuSlider(title: 'Добавить новый образ'),
               Container(
                 child: Padding(
                   padding: EdgeInsets.only(top: 16.w, bottom: 16.w),
@@ -153,7 +151,7 @@ class _MainScreenState extends State<MainScreen> {
         floatingActionButton: FloatingActionButton(
           elevation: 2,
           onPressed: () {
-            YYBottomSheetDialog(context);
+            bottomAddMenu(context);
           },
           child: Icon(Icons.add,
               color: Color.fromRGBO(253, 253, 253, 1), size: 36.sp),
